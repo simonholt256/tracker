@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
-function Profile() {
+function UserWelcomeBar() {
+
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ function Profile() {
 
     // If no token, redirect to signin
     if (!token) {
-      navigate('/');
+      
       return;
     }
 
@@ -31,7 +32,7 @@ function Profile() {
 
       } catch (error) {
         console.error(error);
-        navigate('/'); // If token invalid, redirect
+        
       }
     };
 
@@ -41,16 +42,31 @@ function Profile() {
 
     const handleLogout = () => {
     localStorage.removeItem('jwtToken'); // delete JWT
-    navigate('/signin'); // redirect to signin
   };
 
   return (
-    <div>
-      <h1>Profile</h1>
-      <p>Welcome, {userName}</p>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="welcome-bar">
+      <p>{userName
+        ? `Welcome, ${userName}`
+        : 'Welcome, you are not signed in'}</p>
+      <div className="sign-in-up-bar">
+        {userName ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <>
+            <NavLink to="/signin" className="welcome-signin">
+              Sign In
+            </NavLink>
+            <NavLink to="/signup" className="welcome-signup">
+              Sign Up
+            </NavLink>
+          </>
+        )}
+        
+      </div>
+      
     </div>
   );
 }
 
-export default Profile;
+export default UserWelcomeBar
