@@ -12,7 +12,7 @@ function UserWelcomeBar() {
 
     // If no token, redirect to signin
     if (!token) {
-      
+      setUserName('');
       return;
     }
 
@@ -31,17 +31,20 @@ function UserWelcomeBar() {
         setUserName(response.data.user_name);
 
       } catch (error) {
-        console.error(error);
+        console.error('Failed to fetch user', error);
+        setUserName('');
         
       }
     };
 
     fetchUser();
 
-  }, [navigate]);
+  }, []);
 
     const handleLogout = () => {
     localStorage.removeItem('jwtToken'); // delete JWT
+    setUserName('');
+    navigate('/signin');
   };
 
   return (

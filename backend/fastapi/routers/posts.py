@@ -5,7 +5,9 @@ from typing import List
 from database.database import get_db
 
 from models.posts import Post
+from models.users import User
 from schemas.post import PostCreate, PostUpdate, PostResponse
+from routers.auth.dependencies import get_current_user
 
 router = APIRouter(
     prefix="/posts",
@@ -18,7 +20,14 @@ router = APIRouter(
 
 # GET all posts
 @router.get("/", response_model=list[PostResponse])
-def get_posts(db: Session = Depends(get_db)):
+def get_posts(
+    mine: bool = False,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+    
+  ):
+    if mine:
+      return db.query(Post).filter(Post.user_id == current_user.id).all()
     return db.query(Post).all()
 
 # GET single post
@@ -31,8 +40,15 @@ def get_post(post_id: int, db: Session = Depends(get_db)):
 
 # CREATE post
 @router.post("/", response_model=PostResponse)
-def create_post(post: PostCreate, db: Session = Depends(get_db)):
-    db_post = Post(user_id=post.user_id, content=post.content)
+def create_post(
+    post: PostCreate, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    db_post = Post(
+        user_id=current_user.id,  # get user from JWT
+        content=post.content
+    )
     db.add(db_post)
     db.commit()
     db.refresh(db_post)

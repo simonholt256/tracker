@@ -5,7 +5,6 @@ from datetime import datetime
 # create post
 
 class PostCreate(BaseModel):
-    user_id: int
     content: str
 
 # update post

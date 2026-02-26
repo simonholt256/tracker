@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import CreatePost from '../components/CreatePost';
+import DisplayPosts from '../components/DisplayPosts';
 
 function Profile() {
   const [userName, setUserName] = useState('');
@@ -49,6 +51,8 @@ function Profile() {
       <h1>Profile</h1>
       <p>Welcome, {userName}</p>
       <button onClick={handleLogout}>Logout</button>
+      <CreatePost/>
+      <DisplayPosts/>
     </div>
   );
 }
