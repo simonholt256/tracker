@@ -11,11 +11,13 @@ function CreatePost() {
     const token = localStorage.getItem('jwtToken');
 
     try {
-      await axios.post(
+       await axios.post(
         'http://127.0.0.1:8000/posts/',
         { content: postContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
+      
 
       setPostMessage('Post created!');
       setPostContent('');

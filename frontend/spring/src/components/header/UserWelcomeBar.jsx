@@ -34,6 +34,9 @@ function UserWelcomeBar() {
         console.error('Failed to fetch user', error);
         setUserName('');
         
+        localStorage.removeItem('jwtToken');
+        setUserName("");
+
       }
     };
 
@@ -43,7 +46,7 @@ function UserWelcomeBar() {
 
     const handleLogout = () => {
     localStorage.removeItem('jwtToken'); // delete JWT
-    setUserName('');
+    setUserName('')
     navigate('/signin');
   };
 

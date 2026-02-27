@@ -3,10 +3,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CreatePost from '../components/CreatePost';
 import DisplayPosts from '../components/DisplayPosts';
+import Navbar from '../components/header/Navbar';
 
 function Profile() {
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
+
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -47,12 +50,17 @@ function Profile() {
   };
 
   return (
-    <div>
-      <h1>Profile</h1>
-      <p>Welcome, {userName}</p>
-      <button onClick={handleLogout}>Logout</button>
-      <CreatePost/>
-      <DisplayPosts/>
+    <div className='profile-split'>
+      <div>
+        <h1>Profile</h1>
+        <p>Welcome, {userName}</p>
+        <button onClick={handleLogout}>Logout</button>
+        <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
+      </div>
+      
+      <DisplayPosts state="user"/>
+      <DisplayPosts state="all"/>
+      
     </div>
   );
 }
