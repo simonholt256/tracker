@@ -1,4 +1,6 @@
-function HomeDisplay () {
+import './Home.css'
+
+function AchievementDisplay () {
   return (
     <>
       <div className="card">
@@ -8,4 +10,4 @@ function HomeDisplay () {
   )
 }
 
-export default HomeDisplay
+export default AchievementDisplay

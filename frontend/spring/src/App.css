@@ -99,11 +99,7 @@ html {
 .auth-link {
   padding: 2px 6px;
   margin: 20px;
-  background-color: rgb(243, 243, 243);
-  border-radius: 10px 10px 0px 0px;
-  border-top: 1px solid rgb(134, 134, 134);
-  border-left: 1px solid rgb(134, 134, 134);
-  border-right: 1px solid rgb(134, 134, 134);
+
 }
 
 .profile-split {
@@ -111,12 +107,7 @@ html {
   flex-direction: row;
 }
 
-.card {
-  padding: 10px;
-  margin: 10px;
-  background-color: #CCFFC2;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
-}
+
 
 @media (max-width: 600px) {
   .whole {

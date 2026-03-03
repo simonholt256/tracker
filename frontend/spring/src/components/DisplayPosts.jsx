@@ -118,13 +118,12 @@ function DisplayPosts({state}) {
                     <button onClick={() => handleDelete(post.id)}>delete</button>
                   </>
                 )}
-                <span> likes 0</span>
+                
               </>
               
             ) : (
               <>
-                <button>like</button>
-                <span> 0</span>
+                
               </>
             )}
           </div>

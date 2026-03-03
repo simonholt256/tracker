@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CreatePost from '../components/CreatePost';
 import DisplayPosts from '../components/DisplayPosts';
+
+import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
+import UserWelcomeBar from '../components/header/UserWelcomeBar';
+
+
 
 function Profile() {
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
+  
 
   const [posts, setPosts] = useState([]);
 
@@ -44,24 +50,25 @@ function Profile() {
 
   }, [navigate]);
 
-    const handleLogout = () => {
-    localStorage.removeItem('jwtToken'); // delete JWT
-    navigate('/signin'); // redirect to signin
-  };
-
   return (
-    <div className='profile-split'>
-      <div>
-        <h1>Profile</h1>
-        <p>Welcome, {userName}</p>
-        <button onClick={handleLogout}>Logout</button>
-        <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
+    <>
+      <Header/>
+      <Navbar/>
+      <UserWelcomeBar currentUserName={userName}/>
+      <div className='profile-split'>
+        <div>
+          <h1>Profile</h1>
+          <p>Welcome, {userName}</p>
+          
+          <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
+        </div>
+        
+        <DisplayPosts state="user"/>
+        <DisplayPosts state="all"/>
+        
       </div>
-      
-      <DisplayPosts state="user"/>
-      <DisplayPosts state="all"/>
-      
-    </div>
+    </>
+    
   );
 }
 

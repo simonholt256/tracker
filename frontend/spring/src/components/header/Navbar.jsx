@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom"
 
 function Navbar () {
   return (
-    <div className="nav-container"> only show when signed in
-      <NavLink to="/" className="nav-link">
+    <div className="nav-container">
+      <NavLink to="/home" className="nav-link">
         Home/Dashboard
       </NavLink>
       <NavLink to="/wins" className="nav-link">

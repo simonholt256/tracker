@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+import Header from '../components/header/Header';
+import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+
 
   const navigate = useNavigate(); // used to redirect
 
@@ -22,7 +26,7 @@ function SignIn() {
       localStorage.setItem('jwtToken', token); // save JWT
 
       setMessage("Login successful!");
-      navigate('/profile'); // redirect to Profile page
+      navigate('/'); // redirect to dashboard
 
     } catch (error) {
       console.error(error);
@@ -31,7 +35,9 @@ function SignIn() {
   };
 
   return (
-    <div>
+    <>
+      <Header/>
+      <LoggedOutWelcome/>
       <h1>Sign In</h1>
 
       <form onSubmit={handleSubmit}>
@@ -59,7 +65,7 @@ function SignIn() {
       </form>
 
       {message && <p>{message}</p>}
-    </div>
+    </>
   );
 }
 

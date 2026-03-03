@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import Header from '../components/header/Header';
+import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
+
 function SignUp() {
 
   const [userName, setUserName] = useState('');
@@ -31,7 +34,9 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <>
+      <Header/>
+      <LoggedOutWelcome/>
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSubmit}>
@@ -69,7 +74,7 @@ function SignUp() {
       </form>
 
       {message && <p>{message}</p>}
-    </div>
+    </>
   );
 }
 

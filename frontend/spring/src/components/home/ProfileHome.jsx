@@ -1,8 +1,12 @@
-function ProfileHome () {
+import './Home.css'
+
+function ProfileHome ({userName, userImage, userMantra}) {
   return (
     <>
-      <div className="card">
-        profile box with name image mantra
+      <div className="card profile-home">
+        <h2>{userName}</h2>
+        <p>{userImage}</p>
+        <p>{userMantra}</p>
       </div>
     </>
   )
