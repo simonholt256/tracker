@@ -6,6 +6,10 @@ import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
 import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
+import Calendar from 'react-calendar';
+
+import '../cssStyles/Calendar.css'
+
 function Awards () {
 
   const navigate = useNavigate();
@@ -50,6 +54,7 @@ function Awards () {
       <UserWelcomeBar currentUserName={userName}/>
       <div> trophy cabinat </div>
       <div> other cool stuff </div>
+      <Calendar/>
     </>
   )
 }

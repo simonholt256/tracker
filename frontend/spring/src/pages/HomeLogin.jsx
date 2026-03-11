@@ -34,9 +34,7 @@ function HomeLogin () {
 
         navigate('/home')
 
-      } catch (error) {
-        console.error(error);
-        setIsAuth(false);
+      } catch {
         localStorage.removeItem('jwtToken')
         // If token invalid, redirect
       }

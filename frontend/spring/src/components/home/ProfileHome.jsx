@@ -1,4 +1,4 @@
-import './Home.css'
+import '../../cssStyles/Home.css'
 
 function ProfileHome ({userName, userImage, userMantra}) {
   return (

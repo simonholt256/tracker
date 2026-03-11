@@ -8,6 +8,10 @@ import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
 import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
+import ProfilePic from '../assets/standinprofilepic.jpg'
+
+import '../cssStyles/Profile.css'
+
 
 
 function Profile() {
@@ -55,16 +59,32 @@ function Profile() {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <div className='profile-split'>
-        <div>
-          <h1>Profile</h1>
-          <p>Welcome, {userName}</p>
-          
-          <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
-        </div>
+      <div className='profile-page'>
         
+        <h1>Profile</h1>
+        <div className='profile-info-box'>
+          
+          <img className='profile-pic' src={ProfilePic}></img>
+          <div className='name-mantra'>
+            <h2 className='segment'>{userName}</h2>
+            <div className='segment'>
+              <div>Mantra: </div>
+              <div>A mountain is climbed one step at a time.</div>
+            </div>
+            <div className='segment'> something else here, for balance</div>
+            
+          </div>
+          <button className='edit-button'>Edit profile</button>
+        </div>
+        <div>could have stats, like total stars, longest streak, time improving etc etc etc</div>
+        
+          
+          
+          
+        
+        {/* <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
         <DisplayPosts state="user"/>
-        <DisplayPosts state="all"/>
+        <DisplayPosts state="all"/> */}
         
       </div>
     </>

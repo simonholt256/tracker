@@ -1,0 +1,48 @@
+.wins-page-box {
+  background-color: rgb(204, 242, 243);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 6fr 4.3fr;
+}
+
+.intention-info {
+  width: 100%;
+}
+
+.intention-list-box {
+  background-color: rgb(212, 121, 121);
+  color: rgb(246, 255, 255);
+  padding: 12px;
+}
+
+.wins-intention-item {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 4px;
+  background-color: rgb(255, 255, 237);
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+}
+
+.choosen-intent-title {
+  text-align: center;
+  margin-bottom: 12px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.4rem;
+}
+
+.calendar-box {
+  width: 100%;
+  justify-items: center;
+}
+
+
+
+
+
+.edit-detail {
+  font-size: 10px;
+  margin-top: 2px;
+  background-color: #b0dce9;
+}

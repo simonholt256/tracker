@@ -1,0 +1,41 @@
+.add-box {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-title {
+  padding-bottom: 10px;
+}
+
+.add-button {
+  border-radius: 20px;
+  background-color: rgb(175, 255, 251);
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+  padding: 0px;
+  
+}
+
+.set-intention {
+  background-color: rgb(252, 241, 181);
+  margin: 10px;
+  padding: 6px 20px;
+  color: rgb(7, 7, 7);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
+  
+}
+
+.quit-intention {
+  background-color: rgb(247, 160, 160);
+}

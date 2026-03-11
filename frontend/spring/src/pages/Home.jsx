@@ -8,12 +8,12 @@ import Navbar from '../components/header/Navbar';
 
 import ProfileHome from "../components/home/ProfileHome"
 import AchievementDisplay from "../components/home/AchievementDisplay"
-import MyGoalsHome from "../components/home/MyGoalsHome"
+import MyIntentionsHome from '../components/home/MyIntentionsHome';
 import ExtraInfo from "../components/home/ExtraInfo"
 
 import { useNavigate } from 'react-router-dom';
 
-import '../components/home/Home.css'
+import '../cssStyles/Home.css'
 
 
 
@@ -77,7 +77,7 @@ function Home() {
               <AchievementDisplay/>
             </div>
             <div className="home-box-bottom">
-              <MyGoalsHome/>
+              <MyIntentionsHome/>
               <ExtraInfo/>
               
             </div>

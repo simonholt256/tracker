@@ -9,7 +9,7 @@ import Wins from "./pages/Wins";
 import Awards from "./pages/Awards";
 import Add from "./pages/Add";
 import Profile from "./pages/Profile";
-import './App.css'
+import './cssStyles/App.css'
 
 
 
