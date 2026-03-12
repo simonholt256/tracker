@@ -18,6 +18,16 @@
   grid-template-rows: 1fr 1fr;
 }
 
+.sign-in-up-bar {
+  text-align: center;
+}
+
+.lets-get-you {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .card {
   padding: 10px;
   margin: 30px;
@@ -44,4 +54,10 @@
 
 .profile-home:hover {
   scale: 1.05;
+}
+
+.mountain-pic {
+  height: 300px;
+  margin-top: 10px;
+  margin-left: 20px;
 }

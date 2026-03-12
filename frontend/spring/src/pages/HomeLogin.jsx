@@ -6,6 +6,8 @@ import axios from "axios";
 import Header from "../components/header/Header";
 import LoggedOutWelcome from "../components/header/LoggedOutWelcome";
 
+import Mountain from '../assets/mountainHomeScreen2.png'
+
 function HomeLogin () {
 
   const navigate = useNavigate();
@@ -48,8 +50,9 @@ function HomeLogin () {
     <Header/>
     <LoggedOutWelcome/>
       <div>
-        <h2> Lets get you logged in</h2>
-        <div>some cool picture</div>
+        <h2 className="lets-get-you"> Lets get you logged in</h2>
+        <img className='mountain-pic' src={Mountain}></img>
+        
         <InUpSwitch/>
       </div>
       

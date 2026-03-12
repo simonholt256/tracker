@@ -5,10 +5,11 @@ import Home from "./pages/Home";
 import HomeLogin from "./pages/HomeLogin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Wins from "./pages/Wins";
-import Awards from "./pages/Awards";
-import Add from "./pages/Add";
+import Progress from "./pages/Progress";
+import ChallengesPage from "./pages/ChallengesPage";
+import IntentionsPage from "./pages/IntentionsPage";
 import Profile from "./pages/Profile";
+import Wins from "./pages/Wins";
 import './cssStyles/App.css'
 
 
@@ -26,9 +27,10 @@ function App() {
             <Route path="/" element={<HomeLogin />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/progress" element={<Progress />} />
+            <Route path="/challenges" element={<ChallengesPage />} />
+            <Route path="/intentions" element={<IntentionsPage />} />
             <Route path="/wins" element={<Wins />} />
-            <Route path="/awards" element={<Awards />} />
-            <Route path="/add" element={<Add />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </Router>

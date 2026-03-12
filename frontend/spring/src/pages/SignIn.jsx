@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
 import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
 
+import '../cssStyles/SignInUp.css'
+
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,31 +40,34 @@ function SignIn() {
     <>
       <Header/>
       <LoggedOutWelcome/>
-      <h1>Sign In</h1>
+      <div className='sign-in-box'>
+        <h1 className='sign-in-title'>Sign In</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='sign-in-input'>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              autoComplete="current-email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+          <div className='sign-in-input'>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit">Sign In</button>
-      </form>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
 
       {message && <p>{message}</p>}
     </>

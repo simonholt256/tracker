@@ -4,6 +4,8 @@ import axios from 'axios';
 import Header from '../components/header/Header';
 import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
 
+import '../cssStyles/SignInUp.css'
+
 function SignUp() {
 
   const [userName, setUserName] = useState('');
@@ -37,41 +39,46 @@ function SignUp() {
     <>
       <Header/>
       <LoggedOutWelcome/>
-      <h1>Sign Up</h1>
+      <div className='sign-in-box'>
+        <h1 className='sign-in-title'>Sign Up</h1>
+        <form onSubmit={handleSubmit}>
+          <div className='sign-in-input'>
+            <label>Username:</label>
+            <input
+              type="text"
+              value={userName}
+              autoComplete="username"
+              onChange={(e) => setUserName(e.target.value)}
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-          />
-        </div>
+          <div className='sign-in-input'>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              autoComplete="new-email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+          <div className='sign-in-input'>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              autoComplete="new-password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit">Sign Up</button>
-      </form>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+      
 
       {message && <p>{message}</p>}
     </>
