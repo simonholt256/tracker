@@ -106,7 +106,10 @@ function Progress () {
 
   const createStar = async (date) => {
   
-    const formattedDate = date.toISOString().split("T")[0];
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`;
 
     try {
       const response = await axios.post(
@@ -340,9 +343,10 @@ function Progress () {
                   key={item.id}
                   onClick={() => setSelectedChallenge(item)}
                   className='wins-intention-item'
+                  style={{ margin: '10px', background: item.status == "active" ? '#f9ffbf' : '#9fff7e'}}
                 >
                   {selectedIntention.intention} {item.target_count} times in {item.period_days} days for {item.duration_days} days.
-                  Starting on {item.start_date}, ending on {item.end_date}
+                  Starting on {item.start_date.split("T")[0]}. {item.status}
                 </li>
               ))}
             </ul>

@@ -5,6 +5,8 @@ import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
 import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
+import '../cssStyles/Wins.css'
+
 import Trophy1 from '../assets/trophies/trophy1.png'
 import Trophy2 from '../assets/trophies/trophy2.png'
 import Trophy3 from '../assets/trophies/trophy3.png'
@@ -95,6 +97,17 @@ function Wins () {
         
         <h1>Wins</h1>
         <div>we have star sheets and trophy cabinet</div>
+        <div className='awards-box'>
+          <div> list of awards probably</div>
+          <div className='cabinet'>
+            {challenges.map((item) => 
+              item.status === "completed" ? (
+              <img className='cabinet-trophy' src={trophyMap[item.trophy_id]} key={item.id}></img>
+            ): null
+          )}
+          </div>
+        </div>
+        
         <div>
           <h3>Challenges:</h3>
           {challenges.length === 0 && <p>No intentions yet, add something above</p>}

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, TIMESTAMP, ForeignKey, Boolean, Enum
+from sqlalchemy import Column, Integer, TIMESTAMP, ForeignKey, Boolean, Enum, Date
 from sqlalchemy.sql import func
 from database.database import Base
 
@@ -9,9 +9,9 @@ class Challenge(Base):
   user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
   intention_id = Column(Integer, ForeignKey("intentions.id", ondelete="CASCADE"), nullable=False)
 
-  start_date = Column(TIMESTAMP(timezone=True), nullable=False)
+  start_date = Column(Date, nullable=False)
   duration_days = Column(Integer, nullable=False)
-  end_date = Column(TIMESTAMP(timezone=True))
+  end_date = Column(Date)
 
   target_count = Column(Integer, nullable=False)
   period_days = Column(Integer, nullable=False)

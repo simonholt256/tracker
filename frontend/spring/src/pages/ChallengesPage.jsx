@@ -116,11 +116,7 @@ function ChallengesPage () {
     fetchChallenges();
   }, [token]);
 
-  const calculateEndDate = (start, days) => {
-    const startObj = new Date(start);
-    startObj.setDate(startObj.getDate() + days - 1); // subtract 1 because start counts as day 1
-    return startObj.toISOString(); // full ISO string with time
-  };
+
 
   const createChallenge = async () => {
     if (!intentionChoice) {
@@ -128,7 +124,7 @@ function ChallengesPage () {
       return;
     }
 
-    const endDate = calculateEndDate(startDate, duration);
+   
 
     try {
       const response = await axios.post(
@@ -137,7 +133,6 @@ function ChallengesPage () {
           intention_id: intentionChoice,
           start_date: startDate,
           duration_days: duration,
-          end_date: endDate,
           target_count: targetCount,
           period_days: periodDays,
           strict: strict,
@@ -301,7 +296,7 @@ function ChallengesPage () {
       )}
       <div>
         <h3>Challenges:</h3>
-        {challenges.length === 0 && <p>No intentions yet, add something above</p>}
+        {challenges.length === 0 && <p>No challenges yet, add something above</p>}
         <ul>
           {challenges.map((item) => (
             <li className={`set-intention`} key={item.id}>

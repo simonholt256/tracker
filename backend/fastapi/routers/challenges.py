@@ -40,7 +40,7 @@ def create_challenge(
         )
 
     # Calculate end date
-    end_date = challenge.start_date + timedelta(days=challenge.duration_days)
+    end_date = challenge.start_date + timedelta(days=challenge.duration_days - 1)
 
     db_challenge = Challenge(
         user_id=current_user.id,
