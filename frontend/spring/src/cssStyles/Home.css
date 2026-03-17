@@ -50,14 +50,70 @@
 
 .profile-home {
   height: 250px;
+  align-items: center;
+  text-align: center;
 }
 
 .profile-home:hover {
   scale: 1.05;
+  
+}
+
+.home-wins-box:hover {
+  scale: 1.05;
+  
 }
 
 .mountain-pic {
   height: 300px;
   margin-top: 10px;
   margin-left: 20px;
+}
+
+.home-cabinet {
+  background-color: #deb887;
+  border-bottom: solid 40px #fcd5a2;
+  border-left: solid 10px #ad9069;
+  border-right: solid 10px #b69a76;
+  border-top: solid 6px #74624a;
+  width: 100%;
+  height: 120px;
+}
+
+.home-profile-pic {
+  width: 120px;
+  border-radius: 100px;
+  box-shadow: 4px 2px 6px grey;
+}
+
+.mantra {
+  text-align: left;
+}
+
+.carousel-box {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.slide-ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.slide {
+  list-style: none;
+  min-width: 100%;
+  text-align: center;
+  background-color: #A6BFFF;
+  box-sizing: border-box;
+  padding: 20px 0px;
 }

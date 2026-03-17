@@ -41,5 +41,10 @@ ul {
 }
 
 .trophy-small {
-  height: 40px;
+  height: 80px;
+}
+
+.challenge-box {
+  display: flex;
+  flex-direction: row;
 }

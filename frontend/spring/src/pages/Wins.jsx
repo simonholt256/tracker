@@ -14,6 +14,8 @@ import Trophy4 from '../assets/trophies/trophy4.png'
 import Trophy5 from '../assets/trophies/trophy5.png'
 import Trophy6 from '../assets/trophies/trophy6.png'
 
+import Tick from '../assets/tick.png'
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -21,7 +23,10 @@ function Wins () {
 
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
-  const [challenges, setChallenges] = useState([])
+  const [intentions, setIntentions] = useState([])
+  const [completedChallenges, setCompletedChallenges] = useState([])
+  const [stars, setStars] = useState([]);
+  const [displaywins, setDisplayWins] = useState('cabinet')
 
   const trophyMap = {
       1: Trophy1,
@@ -69,7 +74,19 @@ function Wins () {
   useEffect(() => {
     if (!token) return;
 
-    const fetchChallenges = async () => {
+    const fetchIntentions = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/intentions/', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setIntentions(response.data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchCompletedChallenges = async () => {
       try {
         const response = await axios.get(
           "http://127.0.0.1:8000/challenges/",
@@ -78,15 +95,45 @@ function Wins () {
           }
         );
 
-        setChallenges(response.data);
+        const completed = response.data.filter(
+          challenge => challenge.status === "completed"
+        );
+
+        setCompletedChallenges(completed);
 
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchChallenges();
+     const fetchStars = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/stars/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setStars(response.data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    
+
+    fetchIntentions();
+    fetchCompletedChallenges();
+    fetchStars();
   }, [token]);
+
+
+
+  
 
   return (
     <>
@@ -97,34 +144,65 @@ function Wins () {
         
         <h1>Wins</h1>
         <div>we have star sheets and trophy cabinet</div>
+        <div>
+          <button>trophy cabinet</button>
+          <button>star sheets</button>
+        </div>
+        
         <div className='awards-box'>
-          <div> list of awards probably</div>
           <div className='cabinet'>
-            {challenges.map((item) => 
+            {completedChallenges.map((item) => 
               item.status === "completed" ? (
               <img className='cabinet-trophy' src={trophyMap[item.trophy_id]} key={item.id}></img>
             ): null
           )}
           </div>
+          <div className='trophy-des'>a box that says what the trophy is when you click on it</div>
         </div>
         
         <div>
-          <h3>Challenges:</h3>
-          {challenges.length === 0 && <p>No intentions yet, add something above</p>}
+          <h3>Completed challenges:</h3>
+          
+          {completedChallenges.length === 0 && <p>No completed challenges yet</p>}
           <ul>
-            {challenges.map((item) => (
-              <li className={`set-intention`} key={item.id}>
-                intention No:{item.intention_id}, {item.target_count} times in {item.period_days} days for {item.duration_days} days.
-                Starting on {item.start_date}, ending on {item.end_date} {item.trophy_id}
-                <span>
-                  <img className='trophy-small' src={trophyMap[item.trophy_id]}/>
-                </span>
-                <span> - {item.status}</span>
+            {completedChallenges.map((item) => (
+              <li className='li-item' key={item.id}>
+                <div className={`completed-intention`}>
+                  {intentions.find(i => i.id === item.intention_id)?.intention}
+                  {item.target_count} times in {item.period_days} days for {item.duration_days} days. - {item.status}
+                </div>
+                <div>
+                  <img className='tick' src={Tick}></img>
+                </div>
               </li>
+            
             ))}
           </ul>
         </div>
-        
+        <div>intentions and there stars, and later star sheets</div>
+        <ul>
+          {intentions.map((intention) => {
+            const intentionStarCount = stars.filter(
+              star => star.habit_id == intention.id
+            ).length;
+
+            return (
+              <li className='li-intention-stars' key={intention.id}>
+                <div>
+                  {intention.intention} - {intentionStarCount} ⭐'s:
+                  
+                </div>
+                <div>
+                  {Array.from({ length: intentionStarCount }).map((_, i) => (
+                    <span key={i}>⭐</span>
+                  ))} 
+                </div>
+                {/* <div>maybe when you click you can see all the stars</div> */}
+                
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
     

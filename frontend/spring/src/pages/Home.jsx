@@ -11,6 +11,8 @@ import AchievementDisplay from "../components/home/AchievementDisplay"
 import MyIntentionsHome from '../components/home/MyIntentionsHome';
 import ExtraInfo from "../components/home/ExtraInfo"
 
+
+
 import { useNavigate } from 'react-router-dom';
 
 import '../cssStyles/Home.css'
@@ -22,6 +24,8 @@ function Home() {
   const [isAuth, setIsAuth] = useState(null)
   const [userName, setUserName] = useState('')
   const navigate = useNavigate();
+
+  
   
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -61,6 +65,8 @@ function Home() {
 
   }, []);
 
+  
+
   return (
     <>
       <Header/>
@@ -72,7 +78,7 @@ function Home() {
               <ProfileHome
                 userName={userName}
                 userImage={"picture"}
-                userMantra={"each day a drop, will fill a cup, and then the ocean. I do it anywaaaayy."}  
+                userMantra={"Each day a drop, will fill a cup, and then the ocean. I do it anyway."}  
               />
               <AchievementDisplay/>
             </div>

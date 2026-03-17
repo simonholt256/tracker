@@ -300,12 +300,18 @@ function ChallengesPage () {
         <ul>
           {challenges.map((item) => (
             <li className={`set-intention`} key={item.id}>
-              intention No:{item.intention_id}, {item.target_count} times in {item.period_days} days for {item.duration_days} days.
-              Starting on {item.start_date}, ending on {item.end_date} {item.trophy_id}
-              <span>
-                <img className='trophy-small' src={trophyMap[item.trophy_id]}/>
-              </span>
-              <span> - {item.status}</span>
+              <div className='challenge-box'>
+                <div>
+                  <div>{intentions.find(i => i.id === item.intention_id)?.intention}</div>
+                  <div>{item.target_count} times in {item.period_days} days for {item.duration_days} days.</div>
+                  <div>Starting on {item.start_date}</div>
+                  <div>{item.status}</div>
+                </div>
+                <div>
+                  <img className='trophy-small' src={trophyMap[item.trophy_id]}/>
+                </div>
+              </div>
+              
             </li>
           ))}
         </ul>
