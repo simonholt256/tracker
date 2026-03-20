@@ -36,6 +36,11 @@ ul {
   
 }
 
+.intentions-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .quit-intention {
   background-color: rgb(255, 238, 238);
 }

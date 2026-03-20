@@ -1,8 +1,22 @@
 .wins-page-box {
-  background-color: rgb(204, 242, 243);
+  
+  margin: 20px;
   padding: 12px;
+  
+  background-color: #fff8ee;
+  border: solid 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.progress-block {
   display: grid;
-  grid-template-columns: 6fr 4.3fr;
+  grid-template-columns: 4.3fr 6fr;
+}
+
+.selected-display {
+  border: solid 1px rgba(0, 0, 0, 0);
+  display: flex;
+
 }
 
 .intention-info {
@@ -10,19 +24,32 @@
 }
 
 .intention-list-box {
-  background-color: rgb(212, 121, 121);
+  /* background-color: rgb(212, 121, 121); */
+  background-color: rgb(247, 158, 158);
   color: rgb(246, 255, 255);
   padding: 12px;
+  margin: 20px;
+  border-radius: 10px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
 }
 
 .wins-intention-item {
   cursor: pointer;
-  padding: 10px 16px;
-  margin: 4px;
+  padding: 5px 16px;
+  margin: 0px;
   background-color: rgb(255, 255, 237);
   color: black;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: large;
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 1.3rem;
+  
+}
+
+.list-box-div {
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  background-color: rgb(255, 255, 237);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .choosen-intent-title {
@@ -38,7 +65,12 @@
 }
 
 
-
+.calendar-options {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px 30px;
+  margin-top: 16px;
+}
 
 
 .edit-detail {

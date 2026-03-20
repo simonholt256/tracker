@@ -1,4 +1,4 @@
-/* .react-calendar {
+.react-calendar {
   width: 350px;
   max-width: 100%;
   background: white;
@@ -152,7 +152,7 @@
 
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
-} */
+}
 
 /**/
 
@@ -169,7 +169,7 @@
 
 .react-calendar .react-calendar__tile {
   border-left: 1px solid #bebebe;
-  border-bottom: 1px solid #bebebe;
+  border-bottom: 3px double #bebebe;
   
 }
 

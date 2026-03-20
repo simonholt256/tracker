@@ -1,3 +1,49 @@
+
+.file-border {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding-top: 10px;
+  background-color: #fff8ee;
+  margin-top: 40px;
+  
+}
+
+.tab-box {
+  position: absolute;
+  top: -39px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+
+.tab {
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-bottom: 6px;
+  border-radius: 10px 10px 0px 0px;
+  border: solid 2px rgba(0, 0, 0, 0.3);
+  border-bottom: solid 2px #fff8ee;
+  margin-bottom: -4px;
+  margin-left: 5px;
+  background-color: #fff8ee;
+  cursor: pointer;
+}
+
+.tab-behind:hover {
+  background-color: #eee5d8;
+}
+
+.tab-behind {
+  border-bottom: solid 2px rgba(0, 0, 0, 0.3);
+}
+
 .awards-box {
   display: grid;
   margin: 10px;
@@ -29,13 +75,38 @@
 
 .li-item {
   display: flex;
+  background-color: white;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  margin-top: 3px;
 }
 
-.completed-intention {
-  background-color: #fff1c4;
+.completed-box {
+  background-color: rgb(253, 255, 145);
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  padding: 30px 40px;
+  margin: 20px 40px;
+  box-shadow: 4px 4px 2px rgba(190, 35, 221, 0.301);
+}
+
+.completed-challenge {
+  background-color: #ffffff;
   padding: 4px 10px;
   margin: 4px;
   
+}
+
+.celebrating-man {
+  height: 250px;
+  margin-top: 26px;
+}
+
+.celebrating-box {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .li-intention-stars {
@@ -46,12 +117,33 @@
   box-shadow: 4px 4px 2px rgba(190, 35, 221, 0.301);
 }
 
+.tick-div {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
 .tick {
   height: 30px;
+}
+
+.stars-total-colums {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
 }
 
 .stars-total {
   width: 800px;
   background-color: rgb(253, 255, 145);
+}
+
+.total-star-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.star-box {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+  border-right: solid 1px rgba(0, 0, 0, 0.15);
 }
 
