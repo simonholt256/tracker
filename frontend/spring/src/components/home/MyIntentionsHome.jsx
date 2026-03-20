@@ -28,7 +28,7 @@ function MyIntentionsHome () {
 
   return (
     
-    <div className="card">
+    <div className="card home-intentions">
       <h3>Intentions:</h3>
       <div className='carousel-box'>
 

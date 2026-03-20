@@ -65,7 +65,7 @@ function SignIn() {
             />
           </div>
 
-          <button type="submit">Sign In</button>
+          <button className='purple-button' type="submit">Sign In</button>
         </form>
       </div>
 

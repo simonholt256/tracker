@@ -85,7 +85,6 @@ function Home() {
             <div className="home-box-bottom">
               <MyIntentionsHome/>
               <ExtraInfo/>
-              
             </div>
           </div>
         

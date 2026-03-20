@@ -2,30 +2,57 @@
 * {
   margin: 0px;
   box-sizing: border-box;
+
 }
 
 html {
-  background-color: rgba(92, 186, 209, 0.568);
+  /* background-color: #E0FDFF; */
+  background-color: #ffb444cb;
 }
 
 .back-panel {
   width: 100%;
-  
+  height: 100%;
+
   display: flex;
   justify-content: center;
+
+  background-position: center 10px;
+
+  background-image:
+    /* linear-gradient(to right, #8b25ff62 1px, transparent 1px),
+    linear-gradient(to bottom, #8b25ff62 1px, transparent 1px); */
+
+    linear-gradient(to right, #3a3a3a62 1px, transparent 1px),
+    linear-gradient(to bottom, #3a3a3a62 1px, transparent 1px);
+
+  background-size: 60px 60px; /* size of squares */
 }
+
+p, div {
+  font-family: "Darker Grotesque", sans-serif;
+  /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-size: 1.3rem;
+  font-weight: 500;
+
+}
+
 
 .whole {
   width: 80%;
   height: 100%;
+  min-height: 100vh;
   margin: 0px 30px;
-  padding-bottom: 20px;
-  background-color: #E0FDFF;
+  padding-bottom: 0px;
+  /* background-color: #E0FDFF; */
+  /* background-image: linear-gradient(to bottom, #e0fdffce, #b1e8ecd2); */
+  background-image: linear-gradient(to bottom, #e0fdff, #97f8ff);
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 10px 20px grey;
 }
+
 
 .Authentication-box {
   border: 1px solid rgb(136, 136, 136);
@@ -37,41 +64,70 @@ html {
 .header-banner {
   background-color: #CCEFFE;
   width: 100%;
-  height: 90px;
-  margin-top: 30px;
-  border-top: solid 1px rgb(171, 166, 228);
-  
+  height: 136px;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: solid 0px rgb(170, 116, 231);
+  position: relative;
+
+}
+
+.tortoise {
+  position: absolute;
+  top: 13px;
+  right: 74px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.kindness {
+  position: absolute;
+  bottom: -16px;
+  left: 70px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.4rem;
+
 }
 
 .title-banner {
   background-color: white;
   margin: 20px 40px;
-  height: 62%;
+  height:60%;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
- 
+
 }
 
 .green-div-one {
   height: 100%;
   width: 100%;
   border: solid 10px white;
-  background-color: #CCFFC2;
+  background-color: rgb(131, 255, 137);
 }
 
 .green-div-two {
   height: 100%;
   width: 100%;
   border: solid 10px white;
-  background-color: #CCFFC2;
+  background-color: rgb(131, 255, 137);
 
 }
 
 .main-title {
+  background-color: white;
+  position: relative;
+
+}
+
+.main-title-text {
+  position: absolute;
   color: #FFA953;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 3rem;
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 5.1rem;
+  background-color: rgba(255, 255, 255, 0);
+  left: -4px;
+  bottom: -12px;
   
+
 }
 
 .nav-container {
@@ -80,30 +136,36 @@ html {
   justify-content: space-around;
   background-color: #CCEFFE;
   border-bottom: solid 1px rgb(171, 166, 228);
+  padding: 10px 10px 4px 10px;
 }
 
 .nav-link {
-  background-color: #A6BFFF;
-  padding: 8px 14px;
+  /* background-color: #A6BFFF; */
+  background-color: #60aaff;
+  padding: 6px 14px 8px 14px;
   margin-bottom: 10px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bolder;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: large;
   text-decoration: none;
   color: white;
+  box-shadow: 4px 4px 0px rgb(111, 109, 230);
   
+
 }
 
 .nav-link:hover {
   scale: 1.1;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.301);
-  background-color: #93b2ff;
+  box-shadow: 4px 4px 4px rgb(111, 109, 230);
+  background-color: #5b8aff;
 
 }
 
 .welcome-bar {
   background-color: white;
-  padding: 10px 20px;
+  /* border-top: solid 1px rgb(175, 88, 175); */
+  border-bottom: solid 3px rgb(175, 88, 175);
+  padding: 7px 20px 10px 20px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -120,12 +182,30 @@ html {
 
 }
 
+.purple-button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: #c990ff;
+  color: white;
+  font-family: 'Lexend Mega', sans-serif;
+  font-size: 1rem;
+}
+
 .profile-split {
   display: flex;
   flex-direction: row;
 }
 
-
+.orange {
+  background-color: orange;
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  top: 400px;
+  left: 690px;
+  z-index: -1;
+}
 
 
 
@@ -139,6 +219,6 @@ html {
 @media (min-width: 1600px) {
   .whole {
     width: 1266px;
-    
+
   }
 }

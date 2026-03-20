@@ -107,8 +107,8 @@ function IntentionsPage () {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <button onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
-      <div>
+      <button className='add-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
+      <div className='set'>
         
         {addIntentionsVisable && (
           <div className='add-box'>
@@ -134,7 +134,7 @@ function IntentionsPage () {
         )}
         
       </div>
-      <div>
+      <div className='set-intentions'>
         <h3>Intentions:</h3>
         {intentions.length === 0 && <p>No intentions yet, add something above</p>}
         <ul>

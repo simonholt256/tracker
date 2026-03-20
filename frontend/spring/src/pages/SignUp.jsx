@@ -75,7 +75,7 @@ function SignUp() {
             />
           </div>
 
-          <button type="submit">Sign Up</button>
+          <button className='purple-button' type="submit">Sign Up</button>
         </form>
       </div>
       

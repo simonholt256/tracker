@@ -297,7 +297,7 @@ function ChallengesPage () {
       <div>
         <h3>Challenges:</h3>
         {challenges.length === 0 && <p>No challenges yet, add something above</p>}
-        <ul>
+        <ul >
           {challenges.map((item) => (
             <li className={`set-intention`} key={item.id}>
               <div className='challenge-box'>

@@ -50,7 +50,8 @@ function AchievementDisplay () {
   return (
     <>
       <div className="card home-wins-box">
-        display awards or stars if you dont have any awards, if none at all, have Add buttons
+        {/* display awards or stars if you dont have any awards, if none at all, have Add buttons */}
+        Trophy
         <div className='home-cabinet'>
           {challenges.map((item) => 
             item.status === "completed" ? (
@@ -58,10 +59,13 @@ function AchievementDisplay () {
           ): null
         )}
         </div>
-        <div>Number of intentions: 10</div>
-        <div>total stars: 100</div>
-        <div>Active challenges: 5</div>
-        <div>Completed challenges: 3</div>
+        <div className='stats'>
+          <div>Number of intentions: 10</div>
+          <div>total stars: 100</div>
+          <div>Active challenges: 5</div>
+          <div>Completed challenges: 3</div>
+        </div>
+        
       </div>
     </>
   )

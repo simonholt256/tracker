@@ -180,7 +180,7 @@ function Wins () {
           </ul>
         </div>
         <div>intentions and there stars, and later star sheets</div>
-        <ul>
+        <ul className='stars-total' >
           {intentions.map((intention) => {
             const intentionStarCount = stars.filter(
               star => star.habit_id == intention.id
