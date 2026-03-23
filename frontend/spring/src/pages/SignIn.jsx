@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
 import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
 
+import Squig from '../assets/squig.png'
+import Spring from '../assets/spring.png'
+import SpringTest from '../assets/springtest2.png'
+
 import '../cssStyles/SignInUp.css'
 
 function SignIn() {
@@ -40,12 +44,17 @@ function SignIn() {
     <>
       <Header/>
       <LoggedOutWelcome/>
+      <div className='anchor'>
+        <img className='squig' src={Squig}></img>
+        {/* <img className='spring' src={SpringTest} ></img> */}
+      </div>
       <div className='sign-in-box'>
-        <h1 className='sign-in-title'>Sign In</h1>
+        <h1 className='sign-in-title'>Welcome back!</h1>
         <form onSubmit={handleSubmit}>
-          <div className='sign-in-input'>
-            <label>Email:</label>
-            <input
+          <div className='sign-in-div'>
+            {/* <label>Email:</label> */}
+            <input className='sign-in-input'
+              placeholder='email'
               type="email"
               value={email}
               autoComplete="current-email"
@@ -54,9 +63,10 @@ function SignIn() {
             />
           </div>
 
-          <div className='sign-in-input'>
-            <label>Password:</label>
-            <input
+          <div className='sign-in-div'>
+            {/* <label>Password:</label> */}
+            <input className='sign-in-input'
+              placeholder='Password'
               type="password"
               value={password}
               autoComplete="current-password"
@@ -64,7 +74,6 @@ function SignIn() {
               required
             />
           </div>
-
           <button className='purple-button' type="submit">Sign In</button>
         </form>
       </div>

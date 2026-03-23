@@ -1,3 +1,5 @@
+import Spring from '../../assets/springtest2.png'
+
 function Header() {
 
   return (
@@ -9,15 +11,16 @@ function Header() {
             <div className="green-div"></div>
           </div>
           <div className="main-title">
-            <h1 className="main-title-text" >Spring</h1>
+            <img className='spring' src={Spring}/>
+            {/* <h1 className="main-title-text" >Spring</h1> */}
           </div>
           <div className="green-div-box">
             <div className="green-div"></div>
           </div>
-          <div className="kindness">accumulate with kindness</div>
+          {/* <div className="kindness">accumulate with kindness</div> */}
         </div>
-        
-      </div>    
+
+      </div>
     </>
   )
 }
