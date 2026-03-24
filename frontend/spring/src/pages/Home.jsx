@@ -72,7 +72,8 @@ function Home() {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <>  
+      <> 
+        <div className='page-box'>
           <div className="home-box">
             <div className="home-box-top">
               <ProfileHome
@@ -105,7 +106,7 @@ function Home() {
               </div>
             </div>
           </div>
-        
+        </div> 
       </>
     </>
   )

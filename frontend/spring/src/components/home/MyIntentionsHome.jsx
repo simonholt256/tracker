@@ -49,7 +49,18 @@ function MyIntentionsHome () {
           >
             {intentions.map((item) => (
               <li className="slide" key={item.id}>
-                {item.intention} {item.to_quit ? "(Quit)" : ""}
+                <div className='home-intentions-split'>
+                  <div>
+                    {item.intention} {item.to_quit ? "(Quit)" : ""}
+                  </div>
+                  <div>
+                    <div>{item.to_quit ? "Didn't do it today? click here!" : "Done it today? click here!"}</div>
+                    <button>Add Star</button>
+                    <button>Other</button>
+                  </div>
+                  
+                </div>
+                
               </li>
             ))}
           </ul>
