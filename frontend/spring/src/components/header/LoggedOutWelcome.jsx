@@ -5,7 +5,7 @@ function LoggedOutWelcome(state) {
   return (
     <div className="welcome-bar">
       <p>Welcome, you are not signed in</p>
-      <div className="sign-in-up-bar">
+      <div className=".welcome-bar-interact">
           <>
             <NavLink to="/signin" className="welcome-signin">
               Sign In

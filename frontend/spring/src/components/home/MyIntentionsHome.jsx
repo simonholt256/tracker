@@ -50,13 +50,13 @@ function MyIntentionsHome () {
             {intentions.map((item) => (
               <li className="slide" key={item.id}>
                 <div className='home-intentions-split'>
-                  <div>
+                  <div className='intention-in-slide'>
                     {item.intention} {item.to_quit ? "(Quit)" : ""}
                   </div>
-                  <div>
-                    <div>{item.to_quit ? "Didn't do it today? click here!" : "Done it today? click here!"}</div>
-                    <button>Add Star</button>
-                    <button>Other</button>
+                  <div className='done-it-box'>
+                    {/* <div className='done-it-today'>{item.to_quit ? "Didn't do it today? " : "Done for today? "}</div> */}
+                    <button className='star-button'>Add Star</button>
+                    {/* <button className='other-button'>Other</button> */}
                   </div>
                   
                 </div>

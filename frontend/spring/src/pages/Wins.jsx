@@ -142,10 +142,10 @@ function Wins () {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <div className='profile-page'>
+      <div className='wins-page'>
         
-        <h1>Wins</h1>
-        <div>we have star sheets and trophy cabinet</div>
+        <h1 className='wins-title'>--- Wins ---</h1>
+        {/* <div>we have star sheets and trophy cabinet</div> */}
         
         <div className='file-border'>
           <div className='tab-box'>

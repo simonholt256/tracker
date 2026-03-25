@@ -211,187 +211,214 @@ function Progress () {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <div className='wins-page-box'>
-        <div>
-          <div className='selected-display'>
-            <div>Choose you intention..</div>
-            <div>
-              {selectedIntention && (
-              <div className='choosen-intent-title'>{selectedIntention.intention}</div>
-            )}
-            </div>
-            <div> N challenges active</div>
+      <div className='progress-page'>
+        <h1 className='progress-title'>--- Progress ---</h1>
+        <div className='progress-file-border'>
+          <div className='progress-tab-box'>
+            <button className='progress-tab'>Calendar</button>
+            <button className='progress-tab progress-tab-behind'>More options</button>
           </div>
-          <div>Challenges active: <span>0</span></div>
-          <span>Choose challenge</span>
-          <input></input>
-        </div>
-        
-        <div className='progress-block' >
-          <div className='intention-list-box'>
-            <h3>Your Intentions:</h3>
-            <p>will have an option for All intentions, to acquire, to quit</p>
-            {intentions.length === 0 && <p>No intentions yet.</p>}
-            <div className='list-box-div'>
-              <ul>
-                {intentions.map((item) => (
-                  <li 
-                    key={item.id}
-                    className='wins-intention-item'
-                    onClick={() => {setSelectedIntention(item), setSelectedChallenge(null)}} 
-                    
-                  >
-                    {item.intention} {item.to_quit ? "(Quit)" : ""}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-          </div>
-          <div>
-            
-            <div className='calendar-options'>
-              <button>week</button>
-              <button>month</button>
-              <button>2 months</button>
-              <button>4 months</button>
-              <button>6 months</button>
-              <button>year</button>
-            </div>
-            
-            <div className='calendar-box'>
-              <Calendar
-                value={selectedDate}
-                selectedChallenge={selectedChallenge}
-                onChange={setSelectedDate}
-                tileClassName={({ date, view }) => {
-                  if (view === "month" && isChallengeDay(date)) {
-                    return "challenge-day";
-                  }
-                }}
-                tileContent={({ date, view }) => {
-                  if (view !== "month") return null;
-
-                  const existingStar = stars.find(
-                    (star) =>
-                      star.habit_id === selectedIntention?.id &&
-                      new Date(star.date_checked).toDateString() === date.toDateString()
-                  );
-
-                  const today = new Date();
-                  today.setHours(0,0,0,0);
-
-                  const isPastOrToday = date <= today;
-
-                  const showChallengeMarker = isChallengeDay(date);
-
-                  return (
-                    <div style={{ textAlign: "center", marginTop: "2px" }}>
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (existingStar) {
-                            handleDeleteStar(existingStar.id);
-                          } else {
-                            createStar(date);
-                          }
-                        }}
-                        style={{
-                          display: "inline-block",
-                          background: existingStar ? "gold" : "#eee",
-                          border: "1px solid #ccc",
-                          borderRadius: "6px",
-                          width: "16px",
-                          height: "16px",
-                          cursor: "pointer",
-                          lineHeight: "16px",
-                          textAlign: "center",
-                          userSelect: "none",
-                          fontSize: "20px",
-                          position: "relative",
-                        }}
-                      >
-                        <div
-                        style={{
-                          position: "absolute",
-                          top: "-1px",
-                          left: "-10px",
-                          fontSize: "25px"
-                        }}>
-                          {existingStar ? "⭐" : ""}
-                          {/* {showChallengeMarker ? "yes" : ""} */}
-                        </div>
-                        
-                      </span>
-                        {showChallengeMarker ? (
-                          <div className="edit-detail">
-                            challenge
-                          </div>
-                        ) : (
-                          <div>
-                            
-                          </div>
-                        )}
-                        {/* {isPastOrToday ? (
-                          <div className="edit-detail">
-                            {existingStar ? "edit" : "more"}
-                            
-                          </div>
-                        ) : (
-                          <div className="edit-detail">
-                            
-                          </div>
-                        )} */}
-                    </div>
-                  );
-                }}
-              />
-            </div>
-            
-            
-            <div>
-              {/* <ul>
-                {stars.map((star) => (
-                  <li key={star.id}>
-                    Habit id: {star.habit_id} Habit: | Date: {star.date_checked} | Level: {star.check_level}
-                    <button
-                      style={{ marginLeft: '10px', color: 'red' }}
-                      onClick={() => handleDeleteStar(star.id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                ))}
-              </ul> */}
-            </div>
-            <div>
-              <span>See challenges for</span>
-
-              {selectedIntention && (
-                <span> {selectedIntention.intention}</span>
+          {/* <div>
+            <div className='selected-display'>
+              <div>Choose you intention..</div>
+              <div>
+                {selectedIntention && (
+                <div className='choosen-intent-title'>{selectedIntention.intention}</div>
               )}
-
-              <ul>
-                {challenges.map((item) => (
-                  <li 
-                    key={item.id}
-                    onClick={() => setSelectedChallenge(item)}
-                    className='wins-intention-item'
-                    style={{ margin: '10px', background: item.status == "active" ? '#f9ffbf' : '#9fff7e'}}
-                  >
-                    {selectedIntention.intention} {item.target_count} times in {item.period_days} days for {item.duration_days} days.
-                    Starting on {item.start_date.split("T")[0]}. {item.status}
-                  </li>
-                ))}
-              </ul>
-
+              </div>
+              <div> N challenges active</div>
+            </div>
+            <div>Challenges active: <span>0</span></div>
+            <span>Choose challenge</span>
+            <input></input>
+          </div> */}
+          
+          <div className='progress-block' >
+            <div className='intention-list-box'>
+              <h3 className='your-intention'>Your Intentions:</h3>
+              <div className='all-do-box'>
+                <button className='all'>All</button>
+                <button className='do'>Do!</button>
+                <button className='dont'>Don't do!</button>
+              </div>
+              {/* <p>will have an option for All intentions, to acquire, to quit</p> */}
+              {intentions.length === 0 && <p>No intentions yet.</p>}
+              <div className='list-box-div'>
+                <ul>
+                  {intentions.map((item) => (
+                    <li 
+                      key={item.id}
+                      className='progress-intention-item'
+                      onClick={() => {setSelectedIntention(item), setSelectedChallenge(null)}} 
+                      
+                    >
+                      - {item.intention} {item.to_quit ? "(Quit)" : ""}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               
             </div>
+            <div className='calendar-display-box'>
+              
+              {/* <div className='calendar-options'>
+                <button>week</button>
+                <button>month</button>
+                <button>2 months</button>
+                <button>4 months</button>
+                <button>6 months</button>
+                <button>year</button>
+              </div> */}
+              <div className='choose-challenge-box'>
+                {selectedIntention && (
+                  <div className='chosen-intent-title'>Intention: {selectedIntention.intention}</div>
+                )}
+
+                <div className='select-challenges'>Active challenges: 2   
+                  <select className='calendar-select-challenge'>
+                    <option value="1">select a challenge</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </div>
+              
+              
+              <div className='calendar-box'>
+                <Calendar
+                  value={selectedDate}
+                  selectedChallenge={selectedChallenge}
+                  onChange={setSelectedDate}
+                  tileClassName={({ date, view }) => {
+                    if (view === "month" && isChallengeDay(date)) {
+                      return "challenge-day";
+                    }
+                  }}
+                  tileContent={({ date, view }) => {
+                    if (view !== "month") return null;
+
+                    const existingStar = stars.find(
+                      (star) =>
+                        star.habit_id === selectedIntention?.id &&
+                        new Date(star.date_checked).toDateString() === date.toDateString()
+                    );
+
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+
+                    const isPastOrToday = date <= today;
+
+                    const showChallengeMarker = isChallengeDay(date);
+
+                    return (
+                      <div style={{ textAlign: "center", marginTop: "2px" }}>
+                        <span
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (existingStar) {
+                              handleDeleteStar(existingStar.id);
+                            } else {
+                              createStar(date);
+                            }
+                          }}
+                          style={{
+                            display: "inline-block",
+                            background: existingStar ? "gold" : "#eee",
+                            border: "1px solid #ccc",
+                            borderRadius: "6px",
+                            width: "16px",
+                            height: "16px",
+                            cursor: "pointer",
+                            lineHeight: "16px",
+                            textAlign: "center",
+                            userSelect: "none",
+                            fontSize: "20px",
+                            position: "relative",
+                          }}
+                        >
+                          <div
+                          style={{
+                            position: "absolute",
+                            top: "-1px",
+                            left: "-10px",
+                            fontSize: "25px"
+                          }}>
+                            {existingStar ? "⭐" : ""}
+                            {/* {showChallengeMarker ? "yes" : ""} */}
+                          </div>
+                          
+                        </span>
+                          {showChallengeMarker ? (
+                            <div className="edit-detail">
+                              challenge
+                            </div>
+                          ) : (
+                            <div>
+                              
+                            </div>
+                          )}
+                          {/* {isPastOrToday ? (
+                            <div className="edit-detail">
+                              {existingStar ? "edit" : "more"}
+                              
+                            </div>
+                          ) : (
+                            <div className="edit-detail">
+                              
+                            </div>
+                          )} */}
+                      </div>
+                    );
+                  }}
+                />
+              </div>
+              
+              
+              <div>
+                {/* <ul>
+                  {stars.map((star) => (
+                    <li key={star.id}>
+                      Habit id: {star.habit_id} Habit: | Date: {star.date_checked} | Level: {star.check_level}
+                      <button
+                        style={{ marginLeft: '10px', color: 'red' }}
+                        onClick={() => handleDeleteStar(star.id)}
+                      >
+                        Delete
+                      </button>
+                    </li>
+                  ))}
+                </ul> */}
+              </div>
+              <div className='challenges'>
+                <span>See challenges for</span>
+
+                {selectedIntention && (
+                  <span> {selectedIntention.intention}</span>
+                )}
+
+                <ul className='progress-challenge-item-ul'>
+                  {challenges.map((item) => (
+                    <li 
+                      key={item.id}
+                      onClick={() => setSelectedChallenge(item)}
+                      className='progress-challenge-item'
+                      style={{ background: item.status == "active" ? '#f9ffbf' : '#9fff7e'}}
+                    >
+                      {selectedIntention.intention} {item.target_count} times in {item.period_days} days for {item.duration_days} days.
+                      Starting on {item.start_date.split("T")[0]}. {item.status}
+                    </li>
+                  ))}
+                </ul>
+
+                
+              </div>
+            </div>
           </div>
+          
+          
         </div>
-        
-        
       </div>
+      
       
     
       

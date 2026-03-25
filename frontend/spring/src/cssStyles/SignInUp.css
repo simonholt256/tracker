@@ -32,6 +32,15 @@
   font-family: 'Lexend Mega', sans-serif;
   font-size: 1rem;
   margin: 8px 5px;
+  cursor: pointer;
+}
+
+.purple-button:hover {
+  border-top: solid 2px black;
+  border-left: solid 2px black;
+  border-bottom: solid 2px rgb(78, 78, 78);
+  border-right: solid 2px rgb(78, 78, 78);
+  background-color: #dc91ff;
 }
 
 .anchor {

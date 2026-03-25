@@ -1,3 +1,22 @@
+.wins-page {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 14px;
+}
+
+.wins-title {
+  position: absolute;
+  top: -0px;
+  right: 20px;
+  font-style: italic;
+  font-size: 1.8rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
 
 .file-border {
   position: relative;
@@ -66,7 +85,11 @@
 
 .cabinet-trophy {
   height: 100px;
-  margin: 6px;
+  margin: 6px 0px;
+}
+
+.cabinet-trophy:hover {
+  transform: scale(1.1);
 }
 
 .trophy-des {

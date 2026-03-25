@@ -7,6 +7,12 @@
   line-height: 1.125em;
 }
 
+.react-calendar__navigation__label {
+  font-size: 1.2em;      
+  font-weight: bold;     
+  font-family: "Darker Grotesque", sans-serif;
+}
+
 .react-calendar--doubleView {
   width: 700px;
 }
@@ -43,7 +49,7 @@
 .react-calendar__navigation {
   display: flex;
   height: 44px;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 }
 
 .react-calendar__navigation button {

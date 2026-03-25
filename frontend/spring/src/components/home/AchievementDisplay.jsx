@@ -50,6 +50,7 @@ function AchievementDisplay () {
   return (
     <>
       <div className="card home-wins-box">
+        <div className='tab-small-wins'></div>
         {/* display awards or stars if you dont have any awards, if none at all, have Add buttons */}
         Trophy
         <div className='home-cabinet'>

@@ -12,7 +12,7 @@ function UserWelcomeBar({currentUserName}) {
   return (
     <div className="welcome-bar">
       <p>Welcome, {currentUserName}</p>
-      <div className="sign-in-up-bar">
+      <div className="welcome-bar-interact">
         <button onClick={handleLogout}>Logout</button>
       </div>
       
