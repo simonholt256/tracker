@@ -129,6 +129,16 @@
   font-size: 1.1rem;
   font-weight: 500;
   box-shadow: 4px 4px 0px rgb(152, 80, 194);
+  cursor: pointer;
+}
+
+.all:hover, .do:hover, .dont:hover {
+  scale: 1.08;
+}
+
+.all-do-box button.active {
+  background-color: #f6d2ff;
+  
 }
 
 .progress-intention-item {
@@ -152,14 +162,19 @@
   margin-top: 12px;
 }
 
+.selected {
+  background-color: #cefff9;
+  /* border: solid 1px greenyellow;
+  border-bottom: solid 2px greenyellow;
+  padding: 2px 9px 9px 9px; */
+}
 
 
-.select-challenges {
-  /* background-color: rgb(131, 255, 137); */
-  /* border: solid 2px black; */
-  /* margin: 10px;
-  padding: 0px 8px 6px 10px; */
-  font-size: 1.2rem;
+
+.select-challenges-box {
+  display: flex;
+  justify-content: space-around;
+
 }
 
 .choose-challenge-box {
@@ -171,9 +186,9 @@
 }
 
 .box-display {
-  
+
   display: inline-block;
-  
+
 }
 
 .calendar-display-box {

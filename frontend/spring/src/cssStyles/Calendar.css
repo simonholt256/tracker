@@ -176,6 +176,7 @@
 .react-calendar .react-calendar__tile {
   border-left: 1px solid #bebebe;
   border-bottom: 3px double #bebebe;
+  /* border-top: solid 20px rgb(255, 69, 69); */
   
 }
 
@@ -207,4 +208,12 @@
 
 .react-calendar__tile {
   padding-inline: 0px;
+}
+
+
+.calendar-square {
+  border: solid 1px black;
+  background-color: #76baff;
+  height: 26px;
+  width: 26px;
 }

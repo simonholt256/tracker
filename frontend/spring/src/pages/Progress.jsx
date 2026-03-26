@@ -27,11 +27,13 @@ function Progress () {
   const [challenges, setChallenges] = useState([]);
   const [selectedChallenge, setSelectedChallenge] = useState(null);
 
+  const [filter, setFilter] = useState("all");
+
 
   const token = localStorage.getItem('jwtToken');
-  
+
   useEffect(() => {
-    
+
 
     // If no token, redirect to signin
     if (!token) {
@@ -105,7 +107,7 @@ function Progress () {
   }, []);
 
   const createStar = async (date) => {
-  
+
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -144,7 +146,7 @@ function Progress () {
   };
 
   const handleDeleteStar = async (starId) => {
-    
+
     if (!token) return;
 
     try {
@@ -206,6 +208,15 @@ function Progress () {
     return current >= start && current <= end;
   };
 
+  const filteredIntentions = intentions.filter((item) => {
+    if (filter === "do") return item.to_quit === false;
+    if (filter === "dont") return item.to_quit === true;
+    return true; // "all"
+  });
+
+  const activeChallenges = challenges.filter(c => c.status === "active");
+  const completedChallenges = challenges.filter(c => c.status !== "active");
+
   return (
     <>
       <Header/>
@@ -218,72 +229,100 @@ function Progress () {
             <button className='progress-tab'>Calendar</button>
             <button className='progress-tab progress-tab-behind'>More options</button>
           </div>
-          {/* <div>
-            <div className='selected-display'>
-              <div>Choose you intention..</div>
-              <div>
-                {selectedIntention && (
-                <div className='choosen-intent-title'>{selectedIntention.intention}</div>
-              )}
-              </div>
-              <div> N challenges active</div>
-            </div>
-            <div>Challenges active: <span>0</span></div>
-            <span>Choose challenge</span>
-            <input></input>
-          </div> */}
-          
           <div className='progress-block' >
             <div className='intention-list-box'>
               <h3 className='your-intention'>Your Intentions:</h3>
               <div className='all-do-box'>
-                <button className='all'>All</button>
-                <button className='do'>Do!</button>
-                <button className='dont'>Don't do!</button>
+                <button
+                  className={`all ${filter === "all" ? "active" : ""}`}
+                  onClick={() => setFilter("all")}
+                >
+                  All
+                </button>
+
+                <button
+                  className={`do ${filter === "do" ? "active" : ""}`}
+                  onClick={() => setFilter("do")}
+                >
+                  Do!
+                </button>
+
+                <button
+                  className={`dont ${filter === "dont" ? "active" : ""}`}
+                  onClick={() => setFilter("dont")}
+                >
+                  Don't do!
+                </button>
               </div>
               {/* <p>will have an option for All intentions, to acquire, to quit</p> */}
               {intentions.length === 0 && <p>No intentions yet.</p>}
               <div className='list-box-div'>
                 <ul>
-                  {intentions.map((item) => (
-                    <li 
+                  {filteredIntentions.map((item) => (
+                    <li
                       key={item.id}
-                      className='progress-intention-item'
-                      onClick={() => {setSelectedIntention(item), setSelectedChallenge(null)}} 
-                      
+                      className={`progress-intention-item ${
+                        selectedIntention?.id === item.id ? 'selected' : ''
+                      }`}
+                      onClick={() => {setSelectedIntention(item), setSelectedChallenge(null)}}
+
                     >
                       - {item.intention} {item.to_quit ? "(Quit)" : ""}
                     </li>
                   ))}
                 </ul>
               </div>
-              
+
             </div>
             <div className='calendar-display-box'>
-              
-              {/* <div className='calendar-options'>
-                <button>week</button>
-                <button>month</button>
-                <button>2 months</button>
-                <button>4 months</button>
-                <button>6 months</button>
-                <button>year</button>
-              </div> */}
               <div className='choose-challenge-box'>
                 {selectedIntention && (
                   <div className='chosen-intent-title'>Intention: {selectedIntention.intention}</div>
                 )}
+                <div className='select-challenges-box'>
+                   <div>Active challenges: {activeChallenges.length}</div>
+                  <select
+                    className="progress-challenge-dropdown"
+                    onChange={(e) => {
+                      const selected = challenges.find(c => c.id === Number(e.target.value));
+                      setSelectedChallenge(selected || null);
+                    }}
+                    value={selectedChallenge?.id || ""}
+                  >
+                    {challenges.length === 0 ? (
+                      <option value="">No challenges available</option>
+                    ) : (
+                      <>
+                        <option value="">Select a challenge</option>
 
-                <div className='select-challenges'>Active challenges: 2   
-                  <select className='calendar-select-challenge'>
-                    <option value="1">select a challenge</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                        {activeChallenges.length > 0 && (
+                          <optgroup label="Active">
+                            {activeChallenges.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.target_count} times every {item.period_days} days, for {item.duration_days} days
+                              </option>
+                            ))}
+                          </optgroup>
+                        )}
+
+                        {completedChallenges.length > 0 && (
+                          <optgroup label="Completed">
+                            {completedChallenges.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.target_count} times every {item.period_days} days, for {item.duration_days} days
+                              </option>
+                            ))}
+                          </optgroup>
+                        )}
+                      </>
+                    )}
                   </select>
                 </div>
+
+
               </div>
-              
-              
+
+
               <div className='calendar-box'>
                 <Calendar
                   value={selectedDate}
@@ -311,7 +350,9 @@ function Progress () {
                     const showChallengeMarker = isChallengeDay(date);
 
                     return (
+                      
                       <div style={{ textAlign: "center", marginTop: "2px" }}>
+                        
                         <span
                           onClick={(e) => {
                             e.stopPropagation();
@@ -347,33 +388,15 @@ function Progress () {
                             {/* {showChallengeMarker ? "yes" : ""} */}
                           </div>
                           
+
                         </span>
-                          {showChallengeMarker ? (
-                            <div className="edit-detail">
-                              challenge
-                            </div>
-                          ) : (
-                            <div>
-                              
-                            </div>
-                          )}
-                          {/* {isPastOrToday ? (
-                            <div className="edit-detail">
-                              {existingStar ? "edit" : "more"}
-                              
-                            </div>
-                          ) : (
-                            <div className="edit-detail">
-                              
-                            </div>
-                          )} */}
                       </div>
                     );
                   }}
                 />
               </div>
-              
-              
+
+
               <div>
                 {/* <ul>
                   {stars.map((star) => (
@@ -389,7 +412,7 @@ function Progress () {
                   ))}
                 </ul> */}
               </div>
-              <div className='challenges'>
+              {/* <div className='challenges'>
                 <span>See challenges for</span>
 
                 {selectedIntention && (
@@ -398,7 +421,7 @@ function Progress () {
 
                 <ul className='progress-challenge-item-ul'>
                   {challenges.map((item) => (
-                    <li 
+                    <li
                       key={item.id}
                       onClick={() => setSelectedChallenge(item)}
                       className='progress-challenge-item'
@@ -410,20 +433,21 @@ function Progress () {
                   ))}
                 </ul>
 
-                
-              </div>
+
+
+              </div> */}
             </div>
           </div>
-          
-          
+
+
         </div>
       </div>
-      
-      
-    
-      
+
+
+
+
     </>
   )
 }
 
-export default Progress 
+export default Progress
