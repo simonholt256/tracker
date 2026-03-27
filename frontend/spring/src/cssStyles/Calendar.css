@@ -107,7 +107,12 @@
   max-width: 100%;
   padding: 10px 6.6667px;
   background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: start;
   text-align: center;
+  
   font: inherit;
   font-size: 0.833em;
 }
@@ -216,4 +221,36 @@
   background-color: #76baff;
   height: 26px;
   width: 26px;
+}
+
+
+abbr {
+  font-size: large;
+}
+
+.date-box {
+  margin-top: 8px;
+}
+
+.date-box-span {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  line-height: 16px;
+  text-align: center;
+  user-select: none;
+  font-size: 20px;
+  position: relative;
+}
+
+.date-box-span-used {
+  background-color: none;
+  border: none;
+}
+
+.star {
+  
 }

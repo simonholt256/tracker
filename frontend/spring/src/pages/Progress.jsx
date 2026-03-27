@@ -351,9 +351,9 @@ function Progress () {
 
                     return (
                       
-                      <div style={{ textAlign: "center", marginTop: "2px" }}>
+                      <div className='date-box'>
                         
-                        <span
+                        <span className={`date-box-span ${existingStar ? "date-box-span-used" : ""}`}
                           onClick={(e) => {
                             e.stopPropagation();
                             if (existingStar) {
@@ -362,30 +362,17 @@ function Progress () {
                               createStar(date);
                             }
                           }}
-                          style={{
-                            display: "inline-block",
-                            background: existingStar ? "gold" : "#eee",
-                            border: "1px solid #ccc",
-                            borderRadius: "6px",
-                            width: "16px",
-                            height: "16px",
-                            cursor: "pointer",
-                            lineHeight: "16px",
-                            textAlign: "center",
-                            userSelect: "none",
-                            fontSize: "20px",
-                            position: "relative",
-                          }}
+                          
                         >
-                          <div
+                          <div className='star'
                           style={{
                             position: "absolute",
                             top: "-1px",
-                            left: "-10px",
+                            left: "-9px",
                             fontSize: "25px"
                           }}>
                             {existingStar ? "⭐" : ""}
-                            {/* {showChallengeMarker ? "yes" : ""} */}
+                            
                           </div>
                           
 

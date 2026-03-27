@@ -7,7 +7,7 @@ function ProfileHome ({userName, userImage, userMantra}) {
     <>
       <div className="card profile-home">
         <div className='tab-small-profile'></div>
-        <h2>{userName}</h2>
+        <h2 className='name-title'>{userName}</h2>
         <img className='home-profile-pic' src={ProfilePic}></img>
         <p className='mantra'>{userMantra}</p>
       </div>

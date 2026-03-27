@@ -4,11 +4,16 @@
   flex-direction: column;
   border: solid 1px black;
   border-radius: 20px;
-  margin: 20px;
-  padding: 20px 50px;
+  margin: 4px;
+  padding: 10px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  background-color: rgb(245, 245, 245);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 
 .add-title {
@@ -24,7 +29,7 @@ ul {
   text-decoration: none;
   list-style: none;
   padding: 0px;
-  
+
 }
 
 .set-intention {
@@ -33,7 +38,7 @@ ul {
   padding: 6px 20px;
   color: rgb(7, 7, 7);
   box-shadow: 4px 4px 2px rgba(190, 35, 221, 0.301);
-  
+
 }
 
 .intentions-page {
@@ -52,9 +57,57 @@ ul {
 .challenge-box {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .set-intentions {
   width: 400px;
   background-color: rgb(253, 255, 145);
+}
+
+.challenges-page {
+  display: grid;
+  grid-template-columns: 0.7fr 3fr 1.5fr;
+  width: 90%;
+}
+
+.challenges-display-box {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+}
+
+.third-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.add-challenge-button {
+  margin-top: 60px;
+  margin-left: 20px;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  background-color: rgb(255, 140, 140);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  color: white;
+  line-height: 0.9;
+  font-weight: 500;
+  padding-bottom: 14px;
+  border: none;
+}
+
+.first-column {
+  background-color: rgb(160, 202, 250);
+  margin: 50px 20px 30px 0px;
+}
+
+
+.below-add-button {
+  background-color: rgb(247, 255, 137);
+  margin: 30px 0px 30px 20px;
+  width: 80%;
+  height: 400px;
 }
