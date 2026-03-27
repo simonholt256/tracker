@@ -5,6 +5,7 @@ import '../../cssStyles/Home.css'
 
 function MyIntentionsHome () {
   const [intentions, setIntentions] = useState([]);
+  const [stars, setStars] = useState([])
 
   const [currentCarouselIndex, setCarouselCurrentIndex] = useState(0);
   
@@ -23,13 +24,85 @@ function MyIntentionsHome () {
         console.error(error);
       }
     };
+
+    const fetchStars = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/stars/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setStars(response.data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchIntentions();
+    fetchStars();
   }, [token]);
+
+  const createStar = async (habitID, date) => {
+
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/stars/",
+        {
+          habit_id: habitID,
+          date_checked: date,
+          check_level: 4
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      setStars(prev => [response.data, ...prev]);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getStarForDate = (date) => {
+    if (!selectedIntention) return null;
+
+    return stars.find(
+      (star) =>
+        star.habit_id === selectedIntention.id &&
+        new Date(star.date_checked).toDateString() === date.toDateString()
+    );
+  };
+
+  const handleDeleteStar = async (starId) => {
+
+    if (!token) return;
+
+    try {
+      await axios.delete(`http://127.0.0.1:8000/stars/${starId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // Remove the deleted star from state
+      setStars(stars.filter((s) => s.id !== starId));
+
+    } catch (error) {
+      console.error("Error deleting star:", error.response?.data || error.message);
+    }
+  };
 
   return (
     
     <div className="card home-intentions">
-      <h3>Intentions:</h3>
+      
       <div className='carousel-box'>
 
         <button className='carousel-button prev'
@@ -47,22 +120,44 @@ function MyIntentionsHome () {
               transition: "transform 0.5s ease"
             }}
           >
-            {intentions.map((item) => (
-              <li className="slide" key={item.id}>
-                <div className='home-intentions-split'>
-                  <div className='intention-in-slide'>
-                    {item.intention} {item.to_quit ? "(Quit)" : ""}
-                  </div>
-                  <div className='done-it-box'>
-                    {/* <div className='done-it-today'>{item.to_quit ? "Didn't do it today? " : "Done for today? "}</div> */}
-                    <button className='star-button'>Add Star</button>
-                    {/* <button className='other-button'>Other</button> */}
+            {intentions.map((item) => {
+              const today = new Date().toISOString().split('T')[0];
+
+              const existingStar = stars.find(star => 
+                star.habit_id === item.id &&
+                star.date_checked === today
+              );
+
+              const hasStarToday = !!existingStar;
+
+              return (
+                <li className="slide" key={item.id}>
+                  <div className='home-intentions-split'>
+                    <div className='intention-in-slide'>
+                      {item.intention} {item.to_quit ? "(Quit)" : ""}
+                    </div>
+                    <div className='done-it-box'>
+                      <div>{hasStarToday ? "Remove" : "Add a"} Star</div>
+                      <button className='star-button'
+                      
+                      onClick={(e) => {
+                            e.stopPropagation();
+                            if (hasStarToday) {
+                              handleDeleteStar(existingStar.id);
+                            } else {
+                              createStar(item.id, today);
+                            }}}
+
+                      >{hasStarToday ? "⭐" : "none"}</button>
+                      
+                      <div>for today!</div>
+                    </div>
+                    
                   </div>
                   
-                </div>
-                
-              </li>
-            ))}
+                </li>
+              )
+            })}
           </ul>
           
           
