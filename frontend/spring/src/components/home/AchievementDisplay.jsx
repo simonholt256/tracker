@@ -13,6 +13,10 @@ import Trophy6 from '../../assets/trophies/trophy6.png'
 function AchievementDisplay () {
 
   const [challenges, setChallenges] = useState([])
+  const [intentions, setIntentions] = useState([])
+  const [stars, setStars] = useState([])
+
+  const [selectedTrophy, setSelectedTrophy] = useState([])
     
   const trophyMap = {
       1: Trophy1,
@@ -27,6 +31,37 @@ function AchievementDisplay () {
 
   useEffect(() => {
     if (!token) return;
+
+    const fetchIntentions = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/intentions/', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setIntentions(response.data);
+        
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchStars = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/stars/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setStars(response.data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     const fetchChallenges = async () => {
       try {
@@ -44,27 +79,45 @@ function AchievementDisplay () {
       }
     };
 
+    fetchIntentions();
+    fetchStars();
     fetchChallenges();
+    
   }, [token]);
+
+  const activeChallenges = challenges.filter(c => c.status === "active");
+  const completedChallenges = challenges.filter(c => c.status !== "active");
 
   return (
     <>
       <div className="card home-wins-box">
         <div className='tab-small-wins'></div>
         {/* display awards or stars if you dont have any awards, if none at all, have Add buttons */}
-        Trophy
+        <div className='awards-title'>Awards</div>
         <div className='home-cabinet'>
           {challenges.map((item) => 
             item.status === "completed" ? (
-            <img className='cabinet-trophy' src={trophyMap[item.trophy_id]} key={item.id}></img>
+            <img className='cabinet-trophy-home' src={trophyMap[item.trophy_id]} key={item.id} onClick={() => setSelectedTrophy(item)}></img>
           ): null
         )}
         </div>
+        <div className='trophy-info'> 
+          {selectedTrophy.length === 0 ? (<div>Select a trophey</div>
+            ) : (
+            <div>Make this the actuall intention - {selectedTrophy.intention_id} - {selectedTrophy.target_count} times in {selectedTrophy.period_days} days for {selectedTrophy.duration_days} days.</div>
+          )}
+          
+        </div>
         <div className='stats'>
-          <div>Number of intentions: 10</div>
-          <div>total stars: 100</div>
-          <div>Active challenges: 5</div>
-          <div>Completed challenges: 3</div>
+          <div>
+            <div>Live intentions: {intentions.length}</div>
+            <div>total stars: {stars.length}</div>
+          </div>
+          <div>
+            <div>Active challenges: {activeChallenges.length}</div>
+            <div>Completed challenges: {completedChallenges.length}</div>
+          </div>
+         
         </div>
         
       </div>
