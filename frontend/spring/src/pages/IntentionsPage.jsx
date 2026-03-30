@@ -107,9 +107,22 @@ function IntentionsPage () {
       <Header/>
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
-      <button className='add-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
-      <div className='set'>
+      <div className='intention-page-split'>
         
+        <div className='set-intentions'>
+          <h3>Intentions:</h3>
+          {intentions.length === 0 && <p>No intentions yet, add something above</p>}
+          <ul>
+            {intentions.map((item) => (
+              <li className={`set-intention ${item.to_quit ? "quit-intention" : ""}`} key={item.id}>
+                {item.intention} {item.to_quit ? "(Quit)" : ""}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className='intentions-right-column'>
+          <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
+        </div> 
         {addIntentionsVisable && (
           <div className='add-box'>
             <h2 className='add-title'>Add an Intention</h2>
@@ -126,25 +139,14 @@ function IntentionsPage () {
                 style={{ padding: '8px', width: '300px', margin: '10px' }}
               />
             </div>
-            <button style={{ margin: '12px'}}>would be nice to have option to add note here</button>
-            <button className='add-button' onClick={() => createIntention(intentionText, toQuit)} style={{ padding: '8px 12px', width: '200px' }}>
+            <div>Add a note <input></input></div>
+            <button className='add-button' onClick={() => {createIntention(intentionText, toQuit); setAddIntentionsVisable(prev => !prev);}} style={{ padding: '8px 12px', width: '200px' }}>
               Add Intention
             </button>
           </div>
-        )}
-        
+        )} 
       </div>
-      <div className='set-intentions'>
-        <h3>Intentions:</h3>
-        {intentions.length === 0 && <p>No intentions yet, add something above</p>}
-        <ul>
-          {intentions.map((item) => (
-            <li className={`set-intention ${item.to_quit ? "quit-intention" : ""}`} key={item.id}>
-              {item.intention} {item.to_quit ? "(Quit)" : ""}
-            </li>
-          ))}
-        </ul>
-      </div>
+      
       
     </>
   )

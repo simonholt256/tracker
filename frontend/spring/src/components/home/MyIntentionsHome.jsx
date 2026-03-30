@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import '../../cssStyles/Home.css'
+import Stargold from '../../assets/stargold.png'
+import Starblank from '../../assets/starblank.png'
+import Halfstargold from '../../assets/halfstargold.png'
+import Halfstarblank from '../../assets/halfstarblank.png'
+import Passcolour from '../../assets/passcolour.png'
+import Passblank from '../../assets/passblank.png'
+
+import '../../cssStyles/HomeIntentions.css'
 
 function MyIntentionsHome () {
   const [intentions, setIntentions] = useState([]);
@@ -72,15 +79,7 @@ function MyIntentionsHome () {
     }
   };
 
-  const getStarForDate = (date) => {
-    if (!selectedIntention) return null;
-
-    return stars.find(
-      (star) =>
-        star.habit_id === selectedIntention.id &&
-        new Date(star.date_checked).toDateString() === date.toDateString()
-    );
-  };
+  
 
   const handleDeleteStar = async (starId) => {
 
@@ -133,9 +132,19 @@ function MyIntentionsHome () {
               return (
                 <li className="slide" key={item.id}>
                   <div className='home-intentions-split'>
-                    <div className='intention-in-slide'>
-                      {item.intention} {item.to_quit ? "(Quit)" : ""}
+                    <div className='intention-group'>
+                      
+                        <div className='intention-in-slide'>
+                        {item.intention} {item.to_quit ? "(Quit)" : ""}
+                        </div>
+                        <div className='intention-info' >
+                          intention info, No. of stars, date started
+                        </div>
+                        
+                      
+                      
                     </div>
+                    
                     <div className='done-it-box'>
                       <div>{hasStarToday ? "Remove" : "Add a"} Star</div>
                       <button className='star-button'
@@ -148,11 +157,26 @@ function MyIntentionsHome () {
                               createStar(item.id, today);
                             }}}
 
-                      >{hasStarToday ? "⭐" : "none"}</button>
+                      >
+                        {hasStarToday ? (
+                          <img className='star-pic' src={Stargold} ></img>
+                        ) : (
+                          <img className='star-pic' src={Starblank} ></img>
+                        ) }
+                        
+                      </button>
                       
                       <div>for today!</div>
                     </div>
-                    
+                    <div className='half-pass-box'>
+                      <button className='half-star-button'>
+                        <img className='half-star-pic' src={Halfstarblank}></img>
+                      </button>
+                      
+                      <button className='pass-button'>
+                        <img className='pass-pic' src={Passblank}></img>
+                      </button>
+                    </div>
                   </div>
                   
                 </li>

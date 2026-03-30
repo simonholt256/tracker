@@ -1,0 +1,150 @@
+.home-intentions {
+  background-color: rgb(253, 255, 145);
+  border: solid 1px rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  margin: 6px 10px 26px 10px;
+  border-radius: 0px;
+  box-shadow: 5px 8px 0px rgb(111, 109, 230);
+}
+
+.home-intentions:hover {
+  scale: 1.01;
+  background-color: rgba(253, 255, 145, 0.9);
+  box-shadow: 5px 12px 10px rgb(111, 109, 230);
+}
+
+.carousel-box {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+}
+
+.next, .prev {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.slide-ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.slide {
+  list-style: none;
+  min-width: 100%;
+  text-align: center;
+  background-color: #fdfff3;
+  border-radius: 20px;
+  box-sizing: border-box;
+  border: solid 1px rgba(0, 0, 0, 0.432);
+  padding: 10px 0px;
+  height: 100%;
+
+}
+
+
+.home-intentions-split {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.intention-group {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+.intention-in-slide,
+.intention-info {
+  
+  width: 90%;
+  padding:  10px;
+  margin: 4px 20px;
+  
+}
+
+.intention-info {
+  height: 30px;
+  line-height: 20px;
+  padding:  2px 10px 3px 10px;
+}
+
+
+
+
+.done-it-box {
+  display: flex;
+  width: 120px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.star-button {
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: solid 1px rgb(146, 146, 146);
+  background-color: #e4e4e4;
+}
+
+.star-button:active {
+  transform-origin: 40px 40px;
+  transform: scale(1.1);
+
+}
+
+.star-pic {
+  height: 60px;
+  margin-bottom: 5px;
+  margin-left: 2px;
+}
+
+.half-pass-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.half-star-button, .pass-button {
+  height: 60px;
+  width: 60px;
+  position: relative;
+}
+
+.half-star-pic  {
+  height: 40px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+}
+
+.pass-pic {
+  height: 40px;
+  position: absolute;
+  top: 8px;
+  left: 15px;
+}
