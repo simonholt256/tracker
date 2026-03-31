@@ -104,7 +104,26 @@ function AchievementDisplay () {
         <div className='trophy-info'> 
           {selectedTrophy.length === 0 ? (<div>Select a trophey</div>
             ) : (
-            <div>Make this the actuall intention - {selectedTrophy.intention_id} - {selectedTrophy.target_count} times in {selectedTrophy.period_days} days for {selectedTrophy.duration_days} days.</div>
+            <div> {intentions.find(i => i.id === selectedTrophy.intention_id)?.intention} - 
+            {
+            selectedTrophy.target_count === 1 && selectedTrophy.period_days === 1
+            ? " Everyday"
+            : selectedTrophy.target_count === 1 && selectedTrophy.period_days === 7
+            ? " Once a week"
+            : selectedTrophy.target_count === 1
+            ? ` Once every ${selectedTrophy.period_days}`
+            : selectedTrophy.period_days === 7
+            ? ` ${selectedTrophy.target_count} times a week`
+            : ` ${selectedTrophy.target_count} times a ${selectedTrophy.period_days} days`
+            } for
+              
+            {selectedTrophy.duration_days === 7 
+            ? " a week" 
+            : selectedTrophy.duration_days === 14
+            ? " two weeks"
+            :`${selectedTrophy.duration_days} days`
+            } 
+            </div>
           )}
           
         </div>

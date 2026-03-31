@@ -54,7 +54,7 @@ function MyIntentionsHome () {
     fetchStars();
   }, [token]);
 
-  const createStar = async (habitID, date) => {
+  const createStar = async (habitID, date, checkLevel) => {
 
 
     try {
@@ -63,7 +63,7 @@ function MyIntentionsHome () {
         {
           habit_id: habitID,
           date_checked: date,
-          check_level: 4
+          check_level: checkLevel
         },
         {
           headers: {
@@ -127,6 +127,10 @@ function MyIntentionsHome () {
                 star.date_checked === today
               );
 
+            
+
+              console.log(existingStar?.check_level)
+
               const hasStarToday = !!existingStar;
 
               return (
@@ -138,7 +142,8 @@ function MyIntentionsHome () {
                         {item.intention} {item.to_quit ? "(Quit)" : ""}
                         </div>
                         <div className='intention-info' >
-                          intention info, No. of stars, date started
+                          <div>Started: {item.created_at.split('T')[0]}</div>
+                          <div>Stars: {stars.filter(star => star.habit_id === item.id).length}</div>
                         </div>
                         
                       
@@ -151,14 +156,17 @@ function MyIntentionsHome () {
                       
                       onClick={(e) => {
                             e.stopPropagation();
-                            if (hasStarToday) {
+                            if (existingStar) {
                               handleDeleteStar(existingStar.id);
+                            
                             } else {
-                              createStar(item.id, today);
-                            }}}
+                              createStar(item.id, today, 1);
+                            }
+                          
+                          }}
 
                       >
-                        {hasStarToday ? (
+                        {existingStar?.check_level == 1 ? (
                           <img className='star-pic' src={Stargold} ></img>
                         ) : (
                           <img className='star-pic' src={Starblank} ></img>
@@ -169,12 +177,39 @@ function MyIntentionsHome () {
                       <div>for today!</div>
                     </div>
                     <div className='half-pass-box'>
-                      <button className='half-star-button'>
-                        <img className='half-star-pic' src={Halfstarblank}></img>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (existingStar) {
+                            handleDeleteStar(existingStar.id);
+                          } else {
+                            createStar(item.id, today, 2);
+                          }}}
+                        className='half-star-button'
+                      >
+
+                        {existingStar?.check_level == 2 ? (
+                          <img className='half-star-pic' src={Halfstargold}></img>
+                        ) : (
+                          <img className='half-star-pic' src={Halfstarblank}></img>
+                        )}
+                      
                       </button>
                       
-                      <button className='pass-button'>
-                        <img className='pass-pic' src={Passblank}></img>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (hasStarToday) {
+                            handleDeleteStar(existingStar.id);
+                          } else {
+                            createStar(item.id, today, 3);
+                          }}}
+                        className='pass-button'>
+                        {existingStar?.check_level == 3 ? (
+                          <img className='pass-pic' src={Passcolour}></img>
+                        ) : (
+                          <img className='pass-pic' src={Passblank}></img>
+                        ) }
                       </button>
                     </div>
                   </div>

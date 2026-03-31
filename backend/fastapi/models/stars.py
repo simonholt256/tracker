@@ -9,6 +9,6 @@ class Star(Base):
   user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
   habit_id = Column(Integer, ForeignKey("intentions.id", ondelete="CASCADE"))
   date_checked = Column(Date, nullable=False)
-  check_level = Column(Integer)   # 1, 2, 3, 4, for amounts of star?
+  check_level = Column(Integer)   # 1 - fullstar, 2 - half-star, 3 - pass
   comment = Column(String, nullable=True)
   

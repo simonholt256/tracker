@@ -47,6 +47,7 @@ p, div {
   /* background-color: #E0FDFF; */
   /* background-image: linear-gradient(to bottom, #e0fdffce, #b1e8ecd2); */
   /* background-image: linear-gradient(to bottom, #e0fdff, #97f8ff); */
+  
   background-image: linear-gradient(to bottom, #ffffff, #e7e7e7);
   display: flex;
   flex-direction: column;

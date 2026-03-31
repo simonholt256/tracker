@@ -119,7 +119,7 @@ function Progress () {
         {
           habit_id: selectedIntention.id,
           date_checked: formattedDate,
-          check_level: 4
+          check_level: 1
         },
         {
           headers: {
@@ -340,6 +340,7 @@ function Progress () {
                       (star) =>
                         star.habit_id === selectedIntention?.id &&
                         new Date(star.date_checked).toDateString() === date.toDateString()
+                        
                     );
 
                     const today = new Date();
@@ -371,7 +372,9 @@ function Progress () {
                             left: "-9px",
                             fontSize: "25px"
                           }}>
-                            {existingStar ? "⭐" : ""}
+                            {existingStar ? "⭐" : ""} 
+                            
+                            
                             
                           </div>
                           

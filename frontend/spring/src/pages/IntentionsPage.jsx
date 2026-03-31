@@ -108,7 +108,7 @@ function IntentionsPage () {
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
       <div className='intention-page-split'>
-        
+        <div className='intentions-left-column' ></div>
         <div className='set-intentions'>
           <h3>Intentions:</h3>
           {intentions.length === 0 && <p>No intentions yet, add something above</p>}
@@ -121,7 +121,12 @@ function IntentionsPage () {
           </ul>
         </div>
         <div className='intentions-right-column'>
-          <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
+          <div className='intentions-right-column__button-and-pic'>
+            <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
+            <div className='cool-guy'>cool pic of a little guy</div>
+          </div>
+          
+          <div className='intentions-right-column__display'>display of selected intention. title. notes, stars, notes on stars, any challenges etc. and the edit delete retire</div>
         </div> 
         {addIntentionsVisable && (
           <div className='add-box'>
