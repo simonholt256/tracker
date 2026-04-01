@@ -13,6 +13,9 @@ import Trophy4 from '../assets/trophies/trophy4.png'
 import Trophy5 from '../assets/trophies/trophy5.png'
 import Trophy6 from '../assets/trophies/trophy6.png'
 
+import Column from '../assets/column.png'
+import Rosette from '../assets/rosette.png'
+
 import '../cssStyles/Intentions.css'
 
 function ChallengesPage () {
@@ -163,7 +166,9 @@ function ChallengesPage () {
       <UserWelcomeBar currentUserName={userName}/>
       <div className='challenges-page'>
         
-        <div className='first-column'></div>
+        <div className='first-column'>
+          <img className='rosette' src={Rosette}></img>
+        </div>
         <div>
           <h3>Challenges:</h3>
           {challenges.length === 0 && <p>No challenges yet, add something above</p>}
@@ -175,7 +180,8 @@ function ChallengesPage () {
                     <div>{intentions.find(i => i.id === item.intention_id)?.intention}</div>
                     <div>{item.target_count} times in {item.period_days} days for {item.duration_days} days.</div>
                     <div>Starting on {item.start_date}</div>
-                    
+                    <div>how many days left?</div>
+                    {/* could have only intention the amount and status, and then if opened the box gets bigger and shows starting date, time left etc */}
                   </div>
                   <div>{item.status}</div>
                   <div>
@@ -189,7 +195,9 @@ function ChallengesPage () {
         </div>
         <div className='third-column'>
           <button className='add-challenge-button' onClick={() => setAddChallengeVisable(prev => !prev)}>Add a challenge</button>
-          <div className='below-add-button'></div>
+          <div className='below-add-button'>
+            <img className='column' src={Column}></img>
+          </div>
           {addChallengeVisable && (
             <div className='add-box'>
               <h2 className='add-title'>Add a Challenge</h2>

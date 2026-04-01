@@ -121,7 +121,7 @@ function AchievementDisplay () {
             ? " a week" 
             : selectedTrophy.duration_days === 14
             ? " two weeks"
-            :`${selectedTrophy.duration_days} days`
+            :` ${selectedTrophy.duration_days} days`
             } 
             </div>
           )}

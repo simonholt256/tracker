@@ -5,7 +5,7 @@
 }
 
 .intentions-right-column {
-
+  
 }
 
 .add-box {
@@ -40,18 +40,24 @@
   background-color: rgb(255, 152, 145);
   height: 120px;
   width: 120px;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-left: 10px;
   box-shadow: 4px 4px;
 }
 
+/* .add-intention-button:active {
+  width: 500px;
+  height: 400px;
+  transition: 1s;
+} */
+
 .cool-guy {
   background-color: aliceblue;
   border: solid 1px black;
-  margin-top: 30px;
-  margin-right: 30px;
+  margin: 30px 30px 0px 30px;
   padding: 10px;
-  width: 260px;
+  width: 220px;
+  border-radius: 20px;
 }
 
 .intentions-right-column__display {
@@ -59,6 +65,7 @@
   margin: 30px 30px 10px 0px;
   padding: 20px;
   height: 400px;
+  
   border-radius: 40px;
 }
 
@@ -147,12 +154,27 @@ ul {
 .first-column {
   background-color: rgb(160, 202, 250);
   margin: 50px 20px 30px 0px;
+  position: relative;
 }
 
+.rosette {
+  position: absolute;
+  height: 100px;
+  transform:rotate(-20deg);
+}
 
 .below-add-button {
   background-color: rgb(247, 255, 137);
   margin: 30px 0px 30px 20px;
   width: 80%;
   height: 400px;
+  position: relative;
+}
+
+.column {
+  position: absolute;
+  width: 300px;
+  top: 98%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }

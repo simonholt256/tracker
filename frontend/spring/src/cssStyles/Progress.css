@@ -226,3 +226,65 @@
 .progress-challenge-item {
   width: 200px;
 }
+
+.add-star-modal {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  border-radius: 20px;
+  margin: 4px;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgb(245, 245, 245);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.add-star-modal {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-box-selection {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-intention {
+  height: 70px;
+  width: 70px;
+  margin: 4px;
+}
+
+.add-box-chosen {
+  height: 300px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-image {
+  background-color: #ffbc70;
+  height: 140px;
+  width: 140px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.active-icon {
+  background-color: rgb(150, 150, 236);
+}
+
+.progress-add-button {
+  background-color: #f6d2ff;
+  height: 70px;
+  width: 140px;
+  border-radius: 40px;
+}

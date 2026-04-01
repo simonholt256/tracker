@@ -127,10 +127,6 @@ function MyIntentionsHome () {
                 star.date_checked === today
               );
 
-            
-
-              console.log(existingStar?.check_level)
-
               const hasStarToday = !!existingStar;
 
               return (
