@@ -29,6 +29,14 @@ function Progress () {
 
   const [filter, setFilter] = useState("all");
 
+  const [addBoxDate, setAddBoxDate] = useState()
+
+  const [addCheckLevel, setAddCheckLevel] = useState(1)
+
+  const [addBoxVisable, setAddBoxVisable] = useState(false)
+
+  
+
 
   const token = localStorage.getItem('jwtToken');
 
@@ -106,7 +114,7 @@ function Progress () {
     fetchStars();
   }, []);
 
-  const createStar = async (date) => {
+  const createStar = async (date, checkLevel) => {
 
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -119,7 +127,7 @@ function Progress () {
         {
           habit_id: selectedIntention.id,
           date_checked: formattedDate,
-          check_level: 1
+          check_level: checkLevel
         },
         {
           headers: {
@@ -216,6 +224,13 @@ function Progress () {
 
   const activeChallenges = challenges.filter(c => c.status === "active");
   const completedChallenges = challenges.filter(c => c.status !== "active");
+
+  const modalStar = stars.find(
+    (star) =>
+      star.habit_id === selectedIntention?.id &&
+      addBoxDate &&
+      new Date(star.date_checked).toDateString() === addBoxDate.toDateString()
+  );
 
   return (
     <>
@@ -342,7 +357,7 @@ function Progress () {
                         new Date(star.date_checked).toDateString() === date.toDateString()
                         
                     );
-
+                    
                     const today = new Date();
                     today.setHours(0,0,0,0);
 
@@ -357,11 +372,15 @@ function Progress () {
                         <span className={`date-box-span ${existingStar ? "date-box-span-used" : ""}`}
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (existingStar) {
-                              handleDeleteStar(existingStar.id);
-                            } else {
-                              createStar(date);
-                            }
+
+                            // if (existingStar) {
+                            //   handleDeleteStar(existingStar.id);
+                            // } else {
+                            //   createStar(date, 1);
+                            // }
+                            setAddBoxDate(date);
+                            setAddCheckLevel(existingStar?.check_level ?? 1);
+                            setAddBoxVisable(true);
                           }}
                           
                         >
@@ -372,7 +391,11 @@ function Progress () {
                             left: "-9px",
                             fontSize: "25px"
                           }}>
-                            {existingStar ? "⭐" : ""} 
+                            {existingStar?.check_level === 1 ? "⭐" : 
+                            existingStar?.check_level === 2 ? "🌙" :
+                            existingStar?.check_level === 3 ? "🎟️" :
+                            ""
+                            }
                             
                             
                             
@@ -385,52 +408,66 @@ function Progress () {
                   }}
                 />
               </div>
-
-
-              <div>
-                {/* <ul>
-                  {stars.map((star) => (
-                    <li key={star.id}>
-                      Habit id: {star.habit_id} Habit: | Date: {star.date_checked} | Level: {star.check_level}
-                      <button
-                        style={{ marginLeft: '10px', color: 'red' }}
-                        onClick={() => handleDeleteStar(star.id)}
-                      >
-                        Delete
-                      </button>
-                    </li>
-                  ))}
-                </ul> */}
-              </div>
-              {/* <div className='challenges'>
-                <span>See challenges for</span>
-
-                {selectedIntention && (
-                  <span> {selectedIntention.intention}</span>
-                )}
-
-                <ul className='progress-challenge-item-ul'>
-                  {challenges.map((item) => (
-                    <li
-                      key={item.id}
-                      onClick={() => setSelectedChallenge(item)}
-                      className='progress-challenge-item'
-                      style={{ background: item.status == "active" ? '#f9ffbf' : '#9fff7e'}}
-                    >
-                      {selectedIntention.intention} {item.target_count} times in {item.period_days} days for {item.duration_days} days.
-                      Starting on {item.start_date.split("T")[0]}. {item.status}
-                    </li>
-                  ))}
-                </ul>
-
-
-
-              </div> */}
             </div>
           </div>
 
 
         </div>
+        {addBoxVisable &&
+          <div className='add-star-modal'>
+            <div className='add-box-selection'>
+              <button 
+              onClick={() => setAddCheckLevel(1)}
+              className={`select-intention ${addCheckLevel === 1 ? "active-icon" : ""}`}>STAR</button>
+              <button
+              onClick={() => setAddCheckLevel(2)} 
+              className={`select-intention ${addCheckLevel === 2 ? "active-icon" : ""}`}>HALF STAR</button>
+              <button
+              onClick={() => setAddCheckLevel(3)} 
+              className={`select-intention ${addCheckLevel === 3 ? "active-icon" : ""}`}>PASS</button>
+              <button
+              onClick={() => setAddCheckLevel(4)}
+              className={`select-intention ${addCheckLevel === 4 ? "active-icon" : ""}`}>NONE</button>
+            </div>
+            <div>
+              <div className='add-box-chosen'>
+                <button
+                onClick={() => setAddBoxVisable(false)}>close</button>
+                <div className='selected-image'>
+                  {addCheckLevel === 1
+                  ? "star"
+                  : addCheckLevel === 2
+                  ? "half star"
+                  : addCheckLevel === 3
+                  ? "pass"
+                  : addCheckLevel === 4
+                  ? "None"
+                  : "new star"}
+                </div>
+                <div>{addCheckLevel}{modalStar?.check_level}{modalStar?.date_checked}{addBoxDate.toDateString()}</div>
+                <button
+                onClick={async () => {
+                  
+                  if (modalStar) {
+                    await handleDeleteStar(modalStar.id);
+                  }
+
+                  if (addCheckLevel !== 4) {
+                    await createStar(addBoxDate, addCheckLevel);
+                  }
+
+                  setAddBoxVisable(false);
+                }}
+                className='progress-add-button'>
+                  Add
+                </button>
+              </div>
+              
+            </div>
+            
+          </div>
+        }
+        
       </div>
 
 
