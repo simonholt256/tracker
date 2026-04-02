@@ -73,6 +73,8 @@
 }
 
 .profile-home {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: rgb(131, 255, 137);
@@ -153,11 +155,22 @@
   height: 120px;
 }
 
+.home-profile-pic-box {
+  height: 140px;
+  width: 140px;
+  background-color: rgb(240, 250, 255);
+  border-radius: 10px;
+  box-shadow: 4px 2px 6px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
 .home-profile-pic {
   width: 120px;
-  border-radius: 100px;
-  box-shadow: 4px 2px 6px grey;
-  margin-bottom: 14px;
+  
+  
 }
 
 .name-title {

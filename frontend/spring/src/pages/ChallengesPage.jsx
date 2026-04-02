@@ -150,7 +150,8 @@ function ChallengesPage () {
       );
 
       console.log("Challenge created:", response.data);
-      alert("Challenge created successfully!");
+      setChallenges(prev => [response.data, ...prev]);
+      
       // Optionally clear form or reset state here
     } catch (error) {
       console.error("Error creating challenge:", error.response?.data || error.message);
@@ -170,7 +171,7 @@ function ChallengesPage () {
           <img className='rosette' src={Rosette}></img>
         </div>
         <div>
-          <h3>Challenges:</h3>
+          <h3 className='challenge-list-title'>Challenges:</h3>
           {challenges.length === 0 && <p>No challenges yet, add something above</p>}
           <ul className='challenges-display-box'>
             {challenges.map((item) => (
@@ -179,8 +180,8 @@ function ChallengesPage () {
                   <div>
                     <div>{intentions.find(i => i.id === item.intention_id)?.intention}</div>
                     <div>{item.target_count} times in {item.period_days} days for {item.duration_days} days.</div>
-                    <div>Starting on {item.start_date}</div>
-                    <div>how many days left?</div>
+                    <div>Starting on {item.start_date?.split('T')[0]}</div>
+                    {/* <div>how many days left?</div> */}
                     {/* could have only intention the amount and status, and then if opened the box gets bigger and shows starting date, time left etc */}
                   </div>
                   <div>{item.status}</div>
@@ -202,10 +203,10 @@ function ChallengesPage () {
             <div className='add-box'>
               <h2 className='add-title'>Add a Challenge</h2>
               <div>
-                <select value={intentionChoice} onChange={(e) => setIntentionChoice(parseInt(e.target.value))}>
+                <select className='selecting-intention' value={intentionChoice} onChange={(e) => setIntentionChoice(parseInt(e.target.value))}>
                   <option placevalue="">Select your intention</option>
                   {intentions.map((item) => (
-                    <option key={item.id} value={item.id}>
+                    <option  key={item.id} value={item.id}>
                       {item.intention} {item.to_quit ? "(Quit)" : ""}
                     </option>
                   ))}
@@ -237,13 +238,13 @@ function ChallengesPage () {
                   {/* <option value="custom">Custom</option> */}
                 </select>
                 
-                <span>for</span>
+                <span> for </span>
                 <select value={duration} onChange={(e) => setDuration(parseInt(e.target.value))}>
                   <option value="7">a week</option>
                   <option value="14"> 2 weeks</option>
-                  <option value="28">month (4 weeks)</option>
-                  <option value="30">month (exact) </option>
-                  <option>custom</option>
+                  <option value="21"> 3 weeks</option>
+                  <option value="28">4 weeks</option>
+                  {/* <option>custom</option> */}
                 </select>
                 {/* custom, must be lower than selected duration */}
               </div>
@@ -280,7 +281,7 @@ function ChallengesPage () {
                 )}
                 
               </div>
-              <div>how strict???</div>
+              {/* <div>how strict???</div>
               <div>
                 <input
                   type="radio"
@@ -302,17 +303,38 @@ function ChallengesPage () {
                 <div>Only full stars count towards your goal (but passes always count as a star)</div>
               ) : (
                 <div>Half stars count and we might help you out with some rounding</div>
-              )}
+              )} */}
               <div>CHOOSE YOUR TROPHY</div>
-              <select value={trophyId} onChange={(e) => setTrophyId(parseInt(e.target.value))}>
+              {/* <select value={trophyId} onChange={(e) => setTrophyId(parseInt(e.target.value))}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
-              </select>
-              <div className='select-trophy-box'></div>
+              </select> */}
+              {/* <div className='select-trophy-box'>
+                <img className='trophy-small' src={Trophy1}/>
+                <img className='trophy-small' src={Trophy2}/>
+                <img className='trophy-small' src={Trophy3}/>
+                <img className='trophy-small' src={Trophy4}/>
+                <img className='trophy-small' src={Trophy5}/>
+                <img className='trophy-small' src={Trophy6}/>
+              </div> */}
+              <div className='select-trophy-box'>
+                {[Trophy1, Trophy2, Trophy3, Trophy4, Trophy5, Trophy6].map((trophy, index) => {
+                  const id = index + 1;
+
+                  return (
+                    <img
+                      key={id}
+                      src={trophy}
+                      className={`trophy-small-select ${trophyId === id ? "selected-trophy" : ""}`}
+                      onClick={() => setTrophyId(id)}
+                    />
+                  );
+                })}
+              </div>
               {/* <div style={{ padding: "12px", margin: "20px"}}>
                 <span>start date: {startDate} - </span>
                 <span>duration: {duration}</span>
@@ -328,10 +350,10 @@ function ChallengesPage () {
               <button className='add-button' onClick={() => {
                 createChallenge();
                 setAddChallengeVisable(prev => !prev);
-              }} style={{ padding: '8px 12px', width: '200px' }}>
+              }} >
                 Add Challenge
               </button>
-              <button onClick={() => setAddChallengeVisable(prev => !prev)}>{addChallengeVisable ? "close box" : ""}</button>
+              <button className='challenge-close-button' onClick={() => setAddChallengeVisable(prev => !prev)}>{addChallengeVisable ? "x" : ""}</button>
             </div>
           )}
         </div>

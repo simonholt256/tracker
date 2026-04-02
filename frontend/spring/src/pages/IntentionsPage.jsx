@@ -6,6 +6,8 @@ import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
 import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
+import Mountains from '../assets/mountains.png'
+
 import '../cssStyles/Intentions.css'
 
 
@@ -17,7 +19,11 @@ function IntentionsPage () {
 
   const [intentionText, setIntentionText] = useState(''); // for input form
   const [toQuit, setToQuit] = useState(false);  // optional toggle
+  const [noteText, setNoteText] = useState("");
+
   const [intentions, setIntentions] = useState([]);
+
+  const [selectedIntention, setSelectedIntention] = useState([])
 
   const [addIntentionsVisable, setAddIntentionsVisable] = useState(false);
 
@@ -73,7 +79,7 @@ function IntentionsPage () {
     fetchIntentions();
   }, [token]);
 
-  const createIntention = async (text, quit = false) => {
+  const createIntention = async (text, quit, note = false) => {
     if (!text.trim()) return; 
     
 
@@ -82,7 +88,8 @@ function IntentionsPage () {
         "http://127.0.0.1:8000/intentions/",
         {
           intention: text,
-          to_quit: quit
+          to_quit: quit,
+          note: note
         },
         {
           headers: {
@@ -92,7 +99,7 @@ function IntentionsPage () {
       );
 
       console.log("Intention created:", response.data);
-      setIntentions([response.data, ...intentions]); // add new intention to the list
+      setIntentions(prev => [response.data, ...intentions]); // add new intention to the list
       setIntentionText(''); // clear input
       setToQuit(false);     // reset checkbox
       // Optionally, you can update state to show the new intention in the UI
@@ -112,9 +119,9 @@ function IntentionsPage () {
         <div className='set-intentions'>
           <h3>Intentions:</h3>
           {intentions.length === 0 && <p>No intentions yet, add something above</p>}
-          <ul>
+          <ul className='intentions-ul'>
             {intentions.map((item) => (
-              <li className={`set-intention ${item.to_quit ? "quit-intention" : ""}`} key={item.id}>
+              <li onClick={() => setSelectedIntention(item)} className={`set-intention ${item.to_quit ? "quit-intention" : ""}`} key={item.id}>
                 {item.intention} {item.to_quit ? "(Quit)" : ""}
               </li>
             ))}
@@ -123,10 +130,32 @@ function IntentionsPage () {
         <div className='intentions-right-column'>
           <div className='intentions-right-column__button-and-pic'>
             <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
-            <div className='cool-guy'>cool pic of a little guy</div>
+            <div className='mountain-pic-box'>
+              <img className='mountains-pic' src={Mountains}></img>
+            </div>
           </div>
           
-          <div className='intentions-right-column__display'>display of selected intention. title. notes, stars, notes on stars, any challenges etc. and the edit delete retire</div>
+          <div className='intentions-right-column__display'>
+            {selectedIntention.intention ? (
+              <>
+                <div>{selectedIntention.intention}</div>
+                <div>{selectedIntention.note ? selectedIntention.note : "No note avaliable" }</div>
+                <div>{selectedIntention.created_at?.split('T')[0]}</div>
+                <div>Days active:</div>
+                <div>Active challenges:</div>
+                <div>Completed challenges:</div>
+                <div>Total stars</div>
+                <div>
+                  <button>Edit</button>
+                  <button>Retire</button>
+                  <button>Delete</button>
+                </div>
+              </>
+            ) : (
+              <div>Select an intention</div>
+            )}
+            
+          </div>
         </div> 
         {addIntentionsVisable && (
           <div className='add-box'>
@@ -144,10 +173,20 @@ function IntentionsPage () {
                 style={{ padding: '8px', width: '300px', margin: '10px' }}
               />
             </div>
-            <div>Add a note <input></input></div>
-            <button className='add-button' onClick={() => {createIntention(intentionText, toQuit); setAddIntentionsVisable(prev => !prev);}} style={{ padding: '8px 12px', width: '200px' }}>
+            <div>Add a note
+              
+              <input
+                type="text"
+                placeholder="Add a note"
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)}
+              />
+              
+            </div>
+            <button className='add-button' onClick={() => {createIntention(intentionText, toQuit, noteText); setAddIntentionsVisable(prev => !prev);}} style={{ padding: '8px 12px', width: '200px' }}>
               Add Intention
             </button>
+            <button className='challenge-close-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "x" : ""}</button>
           </div>
         )} 
       </div>

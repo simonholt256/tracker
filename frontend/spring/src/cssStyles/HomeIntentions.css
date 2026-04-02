@@ -55,7 +55,7 @@
 
 .home-intentions-split {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 
@@ -66,6 +66,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 64px;
   
 }
 
@@ -102,26 +103,27 @@
 
 
 .star-button {
-  height: 80px;
-  width: 80px;
+  height: 130px;
+  width: 130px;
   cursor: pointer;
   font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 20px;
   border: solid 1px rgb(146, 146, 146);
-  background-color: #e4e4e4;
+  margin-right: 8px;
+  
 }
 
 .star-button:active {
-  transform-origin: 40px 40px;
-  transform: scale(1.1);
+  transform-origin: 80px 60px;
+  transform: scale(1.03);
 
 }
 
 .star-pic {
-  height: 60px;
+  height: 86px;
   margin-bottom: 5px;
   margin-left: 2px;
 }
@@ -131,12 +133,25 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin: 0px 10px 0px 10px;
 }
 
 .half-star-button, .pass-button {
   height: 60px;
   width: 60px;
   position: relative;
+  border: solid 1px rgba(0, 0, 0, 0.267);
+  border-radius: 10px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.half-star-button:active, .pass-button:active {
+  transform: scale(1.04);
+}
+
+.select-icon-box {
+  display: flex;
 }
 
 .half-star-pic  {

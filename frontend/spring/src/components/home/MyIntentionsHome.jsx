@@ -91,10 +91,23 @@ function MyIntentionsHome () {
       });
 
       // Remove the deleted star from state
-      setStars(stars.filter((s) => s.id !== starId));
+      setStars(prev => prev.filter(s => s.id !== starId));
 
     } catch (error) {
       console.error("Error deleting star:", error.response?.data || error.message);
+    }
+  };
+
+  const handleStarClick = async (level, existingStar, itemId, today) => {
+    if (existingStar) {
+      if (existingStar.check_level === level) {
+        await handleDeleteStar(existingStar.id);
+      } else {
+        await handleDeleteStar(existingStar.id);
+        await createStar(itemId, today, level);
+      }
+    } else {
+      await createStar(itemId, today, level);
     }
   };
 
@@ -134,80 +147,67 @@ function MyIntentionsHome () {
                   <div className='home-intentions-split'>
                     <div className='intention-group'>
                       
-                        <div className='intention-in-slide'>
-                        {item.intention} {item.to_quit ? "(Quit)" : ""}
-                        </div>
-                        <div className='intention-info' >
-                          <div>Started: {item.created_at.split('T')[0]}</div>
-                          <div>Stars: {stars.filter(star => star.habit_id === item.id).length}</div>
-                        </div>
+                      <div className='intention-in-slide'>
+                      {item.intention} {item.to_quit ? "(Quit)" : ""}
+                      </div>
+                      <div className='intention-info' >
+                        <div>Started: {item.created_at.split('T')[0]}</div>
+                        <div>Stars: {stars.filter(star => star.habit_id === item.id).length}</div>
+                      </div> 
+                    </div>
+                    <div className='select-icon-box'>
+                      <div className='done-it-box'>
+                        {/* <div>{hasStarToday ? "Remove" : "Add a"} Star</div> */}
+                        <button className='star-button'
                         
-                      
-                      
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStarClick(1, existingStar, item.id, today);
+                        }}
+
+                        >
+                          {existingStar?.check_level == 1 ? (
+                            <img className='star-pic' src={Stargold} ></img>
+                          ) : (
+                            <img className='star-pic' src={Starblank} ></img>
+                          ) }
+                          
+                        </button>
+                        
+                        {/* <div>for today!</div> */}
+                      </div>
+                      <div className='half-pass-box'>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleStarClick(2, existingStar, item.id, today);
+                          }}
+                          className='half-star-button'
+                        >
+
+                          {existingStar?.check_level == 2 ? (
+                            <img className='half-star-pic' src={Halfstargold}></img>
+                          ) : (
+                            <img className='half-star-pic' src={Halfstarblank}></img>
+                          )}
+                        
+                        </button>
+                        
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleStarClick(3, existingStar, item.id, today);
+                          }}
+                          className='pass-button'>
+                          {existingStar?.check_level == 3 ? (
+                            <img className='pass-pic' src={Passcolour}></img>
+                          ) : (
+                            <img className='pass-pic' src={Passblank}></img>
+                          ) }
+                        </button>
+                      </div>
                     </div>
                     
-                    <div className='done-it-box'>
-                      <div>{hasStarToday ? "Remove" : "Add a"} Star</div>
-                      <button className='star-button'
-                      
-                      onClick={(e) => {
-                            e.stopPropagation();
-                            if (existingStar) {
-                              handleDeleteStar(existingStar.id);
-                            
-                            } else {
-                              createStar(item.id, today, 1);
-                            }
-                          
-                          }}
-
-                      >
-                        {existingStar?.check_level == 1 ? (
-                          <img className='star-pic' src={Stargold} ></img>
-                        ) : (
-                          <img className='star-pic' src={Starblank} ></img>
-                        ) }
-                        
-                      </button>
-                      
-                      <div>for today!</div>
-                    </div>
-                    <div className='half-pass-box'>
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (existingStar) {
-                            handleDeleteStar(existingStar.id);
-                          } else {
-                            createStar(item.id, today, 2);
-                          }}}
-                        className='half-star-button'
-                      >
-
-                        {existingStar?.check_level == 2 ? (
-                          <img className='half-star-pic' src={Halfstargold}></img>
-                        ) : (
-                          <img className='half-star-pic' src={Halfstarblank}></img>
-                        )}
-                      
-                      </button>
-                      
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (hasStarToday) {
-                            handleDeleteStar(existingStar.id);
-                          } else {
-                            createStar(item.id, today, 3);
-                          }}}
-                        className='pass-button'>
-                        {existingStar?.check_level == 3 ? (
-                          <img className='pass-pic' src={Passcolour}></img>
-                        ) : (
-                          <img className='pass-pic' src={Passblank}></img>
-                        ) }
-                      </button>
-                    </div>
                   </div>
                   
                 </li>

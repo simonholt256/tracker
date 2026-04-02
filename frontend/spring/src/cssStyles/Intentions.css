@@ -12,6 +12,7 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
+  width: 500px;
   border: solid 1px black;
   border-radius: 20px;
   margin: 4px;
@@ -24,6 +25,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
+}
+
+.challenge-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .add-title {
@@ -51,18 +58,24 @@
   transition: 1s;
 } */
 
-.cool-guy {
-  background-color: aliceblue;
-  border: solid 1px black;
+.mountain-pic-box {
+  background-color: rgb(194, 209, 141);
+  position: relative;
   margin: 30px 30px 0px 30px;
   padding: 10px;
   width: 220px;
-  border-radius: 20px;
+  
+}
+.mountains-pic {
+  position: absolute;
+  height: 240px;
+  top: -60px;
+  left: -10px;
 }
 
 .intentions-right-column__display {
   border: solid 1px black;
-  margin: 30px 30px 10px 0px;
+  margin: 30px 30px 10px 20px;
   padding: 20px;
   height: 400px;
   
@@ -109,6 +122,33 @@ ul {
   justify-content: space-between;
 }
 
+.intentions-ul {
+  height: 540px;
+  overflow-y: auto;
+}
+
+/* width of scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* track (background) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #ffbe47;
+  border-radius: 5px;
+}
+
+/* hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff9e0e;
+}
+
 .set-intentions {
   width: 400px;
   background-color: rgb(253, 255, 145);
@@ -122,9 +162,13 @@ ul {
   width: 90%;
 }
 
+.challenge-list-title {
+  margin: 40px 0px 2px 0px;
+}
+
 .challenges-display-box {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
+  height: 600px;
+  overflow-y: auto;
 }
 
 .third-column {
@@ -169,6 +213,35 @@ ul {
   width: 80%;
   height: 400px;
   position: relative;
+}
+
+.add-button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 12px;
+}
+
+.selecting-intention {
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 1.4rem;
+  
+  
+}
+
+.select-trophy-box {
+  border: solid 1px black;
+  padding: 10px 20px 2px 20px;
+}
+
+.trophy-small-select {
+  height: 80px;
+  margin: 0px 6px;
+}
+
+.selected-trophy {
+  
+  border: solid 2px rgb(47, 255, 47);
+  
 }
 
 .column {

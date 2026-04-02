@@ -432,7 +432,8 @@ function Progress () {
             <div>
               <div className='add-box-chosen'>
                 <button
-                onClick={() => setAddBoxVisable(false)}>close</button>
+                className='challenge-close-button'
+                onClick={() => setAddBoxVisable(false)}>x</button>
                 <div className='selected-image'>
                   {addCheckLevel === 1
                   ? "star"

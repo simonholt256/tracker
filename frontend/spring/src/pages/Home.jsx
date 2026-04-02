@@ -23,6 +23,8 @@ function Home() {
 
   const [isAuth, setIsAuth] = useState(null)
   const [userName, setUserName] = useState('')
+  const [icon, setIcon] = useState('')
+  const [mantra, setMantra] = useState('')
   const navigate = useNavigate();
 
   
@@ -51,6 +53,8 @@ function Home() {
 
         setIsAuth(true)
         setUserName(response.data.user_name)
+        setIcon(response.data.icon_image ?? 0)
+        setMantra(response.data.mantra ?? "Don’t let perfect be the enemy of good.");
         console.log(userName)
 
       } catch (error) {
@@ -78,8 +82,8 @@ function Home() {
             <div className="home-box-top">
               <ProfileHome
                 userName={userName}
-                userImage={"picture"}
-                userMantra={"Each day a drop, will fill a cup, and then the ocean. I do it anyway."}  
+                userImage={icon}
+                userMantra={mantra}  
               />
               <AchievementDisplay/>
             </div>

@@ -13,12 +13,16 @@ class UserUpdate(BaseModel):
     user_name: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = None
+    icon_image: Optional[str] = None
+    mantra: Optional[str] = None
 
 # returning user data (response)
 class UserResponse(BaseModel):
     id: int
     user_name: str
     email: EmailStr
+    icon_image: Optional[str]
+    mantra: Optional[str]
     created_at: Optional[datetime]
     last_login: Optional[datetime]
 

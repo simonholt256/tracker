@@ -28,7 +28,7 @@ function Wins () {
   const [intentions, setIntentions] = useState([])
   const [completedChallenges, setCompletedChallenges] = useState([])
   const [stars, setStars] = useState([]);
-  const [displaywins, setDisplayWins] = useState('cabinet')
+  const [chosenWinFile, setChosenWinFile] = useState('overview')
 
   const trophyMap = {
       1: Trophy1,
@@ -149,10 +149,18 @@ function Wins () {
         
         <div className='file-border'>
           <div className='tab-box'>
-            <button className='tab'>Overview</button>
-            <button className='tab tab-behind'>star sheets</button>
-            <button className='tab tab-behind'>trophy cabinet</button>
+            <button
+            onClick={() => setChosenWinFile('overview')}
+            className={`tab ${chosenWinFile !== 'overview' ? 'tab-behind' : ''}`}>Overview
+            </button>
+            <button
+            onClick={() => setChosenWinFile('star-sheets')}
+            className={`tab ${chosenWinFile !== 'star-sheets' ? 'tab-behind' : ''}`}>star sheets</button>
+            <button
+            onClick={() => setChosenWinFile('cabinet')}
+            className={`tab ${chosenWinFile !== 'cabinet' ? 'tab-behind' : ''}`}>trophy cabinet</button>
           </div>
+          {chosenWinFile === "cabinet" &&
           <div className='awards-box'>
             <div className='cabinet'>
               {completedChallenges.map((item) => 
@@ -163,6 +171,8 @@ function Wins () {
             </div>
             <div className='trophy-des'>a box that says what the trophy is when you click on it</div>
           </div>
+          }
+          {chosenWinFile === "overview" &&
           <div className='completed-box'>
             <div>
               <h3>Completed challenges:</h3>
@@ -189,35 +199,41 @@ function Wins () {
             </div>
             
           </div>
-          
-          <div>intentions and there stars, and later star sheets</div>
-          <div>flick between dos and quits, and just show a couple of the top ones</div>
-          <ul className='stars-total' >
-            {intentions.map((intention) => {
-              const intentionStarCount = stars.filter(
-                star => star.habit_id == intention.id
-              ).length;
+          }
+          {chosenWinFile === "star-sheets" &&
+          <>
+            <div>intentions and there stars, and later star sheets</div>
+            <div>flick between dos and quits, and just show a couple of the top ones</div>
+            <ul className='stars-total' >
+              {intentions.map((intention) => {
+                const intentionStarCount = stars.filter(
+                  star => star.habit_id == intention.id
+                ).length;
 
-              return (
-                <li className='li-intention-stars' key={intention.id}>
-                  <div className='stars-total-colums'>
-                    <div>
-                      {intention.intention}: {intentionStarCount}
-                      
+                return (
+                  <li className='li-intention-stars' key={intention.id}>
+                    <div className='stars-total-colums'>
+                      <div>
+                        {intention.intention}: {intentionStarCount}
+                        
+                      </div>
+                      <div className='total-star-display'>
+                        {Array.from({ length: intentionStarCount }).map((_, i) => (
+                          <span className='star-box' key={i}>⭐</span>
+                        ))} 
+                      </div>
                     </div>
-                    <div className='total-star-display'>
-                      {Array.from({ length: intentionStarCount }).map((_, i) => (
-                        <span className='star-box' key={i}>⭐</span>
-                      ))} 
-                    </div>
-                  </div>
-                  
-                  {/* <div>maybe when you click you can see all the stars</div> */}
-                  
-                </li>
-              );
-            })}
-          </ul>
+                    
+                    {/* <div>maybe when you click you can see all the stars</div> */}
+                    
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+          }
+          
+          
         </div>
         
         

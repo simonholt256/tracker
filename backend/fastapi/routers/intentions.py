@@ -26,7 +26,8 @@ def create_intention(
     db_intention = Intention(
         user_id=current_user.id,
         intention=intention.intention,
-        to_quit=intention.to_quit
+        to_quit=intention.to_quit,
+        note=intention.note
     )
     db.add(db_intention)
     db.commit()

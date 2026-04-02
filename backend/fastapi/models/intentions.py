@@ -9,5 +9,6 @@ class Intention(Base):
   user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
   intention = Column(String, nullable=False)
   to_quit = Column(Boolean, default=False)
+  note = Column(String, nullable=True)
   created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
   

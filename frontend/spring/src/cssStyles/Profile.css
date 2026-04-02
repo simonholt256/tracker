@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   
 }
 
@@ -20,16 +21,35 @@
   box-shadow: 4px 2px 6px grey;
 }
 
+.profile-pic-box {
+  height: 240px;
+  width: 240px;
+  background-color: rgba(255, 255, 255, 0.425);
+  border-radius: 10px;
+  box-shadow: 4px 2px 6px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile-pic {
   height: 200px;
-  border-radius: 100px;
-  box-shadow: 4px 2px 6px grey;
+  
+  
 }
 
 .name-mantra {
-  width: 200px;
+  width: 260px;
   margin: 10px;
   position: relative;
+}
+
+.mantra-title {
+  margin-left: 20px;
+}
+
+.profile-mantra {
+  font-size: 1.7rem;
 }
 
 .edit-button {
@@ -38,6 +58,14 @@
   right: 16px;
   border-radius: 20px;
   padding: 5px 10px;
+}
+
+.edit-profile-box {
+  position: absolute;
+  background-color: rgb(241, 241, 241);
+  width: 500px;
+
+  padding: 40px;
 }
 
 .segment {

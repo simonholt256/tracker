@@ -77,7 +77,11 @@ def update_user(user_id: int, update: UserUpdate, db: Session = Depends(get_db))
     if update.email is not None:
         db_user.email = update.email
     if update.password is not None:
-        db_user.password_hash = update.password  # hash 
+        db_user.password_hash = update.password
+    if update.icon_image is not None:
+        db_user.icon_image = update.icon_image
+    if update.mantra is not None:
+        db_user.mantra = update.mantra  
 
     db.commit()
     db.refresh(db_user)
