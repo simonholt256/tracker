@@ -45,7 +45,7 @@ function SignIn() {
       <Header/>
       <LoggedOutWelcome/>
       <div className='anchor'>
-        <img className='squig' src={Squig}></img>
+        {/* <img className='squig' src={Squig}></img> */}
         {/* <img className='spring' src={SpringTest} ></img> */}
       </div>
       <div className='sign-in-box'>

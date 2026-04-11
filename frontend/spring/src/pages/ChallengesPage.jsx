@@ -197,7 +197,7 @@ function ChallengesPage () {
         <div className='third-column'>
           <button className='add-challenge-button' onClick={() => setAddChallengeVisable(prev => !prev)}>Add a challenge</button>
           <div className='below-add-button'>
-            <img className='column' src={Column}></img>
+            {/* <img className='column' src={Column}></img> */}
           </div>
           {addChallengeVisable && (
             <div className='add-box'>

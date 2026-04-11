@@ -102,6 +102,7 @@ function Profile() {
           </div>
           
           <div className='name-mantra'>
+            <div className='mantra-title'>Username: </div>
             <h2 className='segment'>{userName}</h2>
             <div className='mantra-title'>Mantra: </div>
             <div className='segment'>

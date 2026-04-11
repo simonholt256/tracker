@@ -6,6 +6,7 @@ import axios from "axios";
 import Header from "../components/header/Header";
 import LoggedOutWelcome from "../components/header/LoggedOutWelcome";
 
+import Flowers from '../assets/growing.png'
 import Mountain from '../assets/mountainHomeScreen2.png'
 
 function HomeLogin () {
@@ -51,7 +52,7 @@ function HomeLogin () {
     <LoggedOutWelcome/>
       <div>
         
-        <img className='mountain-pic' src={Mountain}></img>
+        <img className='mountain-pic' src={Flowers}></img>
         <h2 className="lets-get-you"> Lets get you logged in</h2>
         <InUpSwitch/>
       </div>

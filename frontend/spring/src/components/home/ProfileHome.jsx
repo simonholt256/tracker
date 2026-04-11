@@ -24,9 +24,12 @@ function ProfileHome ({userName, userImage, userMantra}) {
     <>
       <div className="profile-home">
         <div className='tab-small-profile'></div>
-        <h2 className='name-title'>{userName}</h2>
+        
         <div className='home-profile-pic-box'>
           <img className='home-profile-pic' src={icons[userImage]}></img>
+        </div>
+        <div className='name-title-box'>
+          <h2 className='name-title'>{userName}</h2>
         </div>
         
         <p className='mantra'>{userMantra}</p>

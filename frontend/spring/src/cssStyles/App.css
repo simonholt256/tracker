@@ -83,22 +83,22 @@ p, div {
 
 .green-div-box {  
   background-color: rgb(131, 255, 137);
-  margin: 10px;
+  margin: 8px 10px 8px 10px;
   box-shadow: 4px 4px 0px rgb(196, 255, 188);
 }
 
 .green-one {
-  margin-left: 26px;
+  margin-left: 20px;
 }
 
 .green-two {
-  margin-right: 26px;
-  margin-left: 6px;
+  margin-right: 22px;
+  margin-left: 12px;
 }
 
 .spring {
-  width: 220px;
-  height: 50px;
+  width: 200px;
+  height: 46px;
 }
 
 .kindness {
@@ -206,6 +206,7 @@ p, div {
   margin: 0px 20px;
   color: #000000;
   background-color: #ffffff;
+  
   border: solid 1px rgba(136, 136, 136, 0.945);
   border-radius: 6px;
   box-shadow: 4px 4px 0px black;

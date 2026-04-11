@@ -1,4 +1,5 @@
 import Spring from '../../assets/springitallic.png'
+import Springnew from '../../assets/springnew.png'
 
 function Header() {
 
@@ -11,7 +12,7 @@ function Header() {
             <div className="green-div"></div>
           </div>
           <div className="main-title">
-            <img className='spring' src={Spring}/>
+            <img className='spring' src={Springnew}/>
             {/* <h1 className="main-title-text" >Spring</h1> */}
           </div>
           <div className="green-div-box green-two">

@@ -8,6 +8,8 @@ import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
 import Mountains from '../assets/mountains.png'
 
+import Addintention from '../assets/addintention.png'
+
 import '../cssStyles/Intentions.css'
 
 
@@ -115,8 +117,9 @@ function IntentionsPage () {
       <Navbar/>
       <UserWelcomeBar currentUserName={userName}/>
       <div className='intention-page-split'>
-        <div className='intentions-left-column' ></div>
+        {/* <div className='intentions-left-column' ></div> */}
         <div className='set-intentions'>
+          <div className='set-intentions-tab'></div>
           <h3>Intentions:</h3>
           {intentions.length === 0 && <p>No intentions yet, add something above</p>}
           <ul className='intentions-ul'>
@@ -129,13 +132,18 @@ function IntentionsPage () {
         </div>
         <div className='intentions-right-column'>
           <div className='intentions-right-column__button-and-pic'>
-            <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button>
+            {/* <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button> */}
+            <div className='add-backing'>
+              <img onClick={() => setAddIntentionsVisable(prev => !prev)} className='add-intention-img' src={Addintention}></img>
+            </div>
+            
             <div className='mountain-pic-box'>
-              <img className='mountains-pic' src={Mountains}></img>
+              {/* <img className='mountains-pic' src={Mountains}></img> */}
             </div>
           </div>
           
           <div className='intentions-right-column__display'>
+            <div className='intention-file'>intention file</div>
             {selectedIntention.intention ? (
               <>
                 <div>{selectedIntention.intention}</div>
@@ -186,6 +194,7 @@ function IntentionsPage () {
             <button className='add-button' onClick={() => {createIntention(intentionText, toQuit, noteText); setAddIntentionsVisable(prev => !prev);}} style={{ padding: '8px 12px', width: '200px' }}>
               Add Intention
             </button>
+            
             <button className='challenge-close-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "x" : ""}</button>
           </div>
         )} 
