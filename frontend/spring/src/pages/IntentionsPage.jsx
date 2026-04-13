@@ -8,6 +8,8 @@ import UserWelcomeBar from '../components/header/UserWelcomeBar';
 
 import Mountains from '../assets/mountains.png'
 
+import Pencil from '../assets/pencil.png'
+
 import Addintention from '../assets/addintention.png'
 
 import '../cssStyles/Intentions.css'
@@ -124,7 +126,7 @@ function IntentionsPage () {
           {intentions.length === 0 && <p>No intentions yet, add something above</p>}
           <ul className='intentions-ul'>
             {intentions.map((item) => (
-              <li onClick={() => setSelectedIntention(item)} className={`set-intention ${item.to_quit ? "quit-intention" : ""}`} key={item.id}>
+              <li onClick={() => setSelectedIntention(item)} className={`set-intention ${item.to_quit ? "quit-intention" : ""} ${selectedIntention?.id === item.id ? 'selected-intent' : ''}`} key={item.id}>
                 {item.intention} {item.to_quit ? "(Quit)" : ""}
               </li>
             ))}
@@ -132,37 +134,45 @@ function IntentionsPage () {
         </div>
         <div className='intentions-right-column'>
           <div className='intentions-right-column__button-and-pic'>
-            {/* <button className='add-intention-button' onClick={() => setAddIntentionsVisable(prev => !prev)}>{addIntentionsVisable ? "hide Add an intention" : "Add an intention"}</button> */}
-            <div className='add-backing'>
+            <div className='intentions-right-column__button-box'>
               <img onClick={() => setAddIntentionsVisable(prev => !prev)} className='add-intention-img' src={Addintention}></img>
             </div>
             
-            <div className='mountain-pic-box'>
-              {/* <img className='mountains-pic' src={Mountains}></img> */}
-            </div>
-          </div>
-          
-          <div className='intentions-right-column__display'>
-            <div className='intention-file'>intention file</div>
-            {selectedIntention.intention ? (
-              <>
-                <div>{selectedIntention.intention}</div>
-                <div>{selectedIntention.note ? selectedIntention.note : "No note avaliable" }</div>
-                <div>{selectedIntention.created_at?.split('T')[0]}</div>
-                <div>Days active:</div>
-                <div>Active challenges:</div>
-                <div>Completed challenges:</div>
-                <div>Total stars</div>
-                <div>
-                  <button>Edit</button>
-                  <button>Retire</button>
-                  <button>Delete</button>
-                </div>
-              </>
-            ) : (
-              <div>Select an intention</div>
-            )}
             
+          </div>
+          <div className='intentions-right-column__box'>
+            <div className='intentions-right-column__display'>
+              <img className='pencil-img' src={Pencil}></img>
+              <div className='intention-file'>intention file</div>
+              {selectedIntention.intention ? (
+                <>
+                  <div>Intention:</div>
+                  <div className='intention-info-display'>{selectedIntention.intention}</div>
+                  <div>Note:</div>
+                  <div className='intention-info-display'>{selectedIntention.note ? selectedIntention.note : "No note avaliable" }</div>
+                  <div>Start date:</div>
+                  <div className='intention-info-display'>{selectedIntention.created_at?.split('T')[0]}</div>
+                  {/* <div>Days active:</div> */}
+                  <div>Active challenges: 2</div>
+                  <div>Completed challenges: 0</div>
+                  <div>Total stars: 50</div>
+                  <div className='edit-intentions-buttons'>
+                    <button className='edit-intentions-button'>Edit</button>
+                    <button className='edit-intentions-button'>Retire</button>
+                    <button className='edit-intentions-button'>Delete</button>
+                  </div>
+                </>
+              ) : (
+                <div>Select an intention</div>
+              )}
+              
+            </div>
+            
+          </div>
+          <div className='intention-help-box'>
+            <div className='intention-help'>
+              It's best to set simple and achievable goals. If an intention can't be summed up in a simple phrase consider splitting the objective into smaller more manageable chunks.
+            </div>
           </div>
         </div> 
         {addIntentionsVisable && (

@@ -95,18 +95,23 @@ function Profile() {
       <UserWelcomeBar currentUserName={userName}/>
       <div className='profile-page'>
         
-        <h1>Profile</h1>
+        
         <div className='profile-info-box'>
+          <div className='tab-profile'></div>
+          <h1 className='profile-title'>--- Profile ---</h1>
           <div className='profile-pic-box'>
             <img className='profile-pic' src={icons[icon]}></img>
           </div>
           
           <div className='name-mantra'>
-            <div className='mantra-title'>Username: </div>
-            <h2 className='segment'>{userName}</h2>
-            <div className='mantra-title'>Mantra: </div>
             <div className='segment'>
-              
+              <div className='mantra-title'>Username: </div>
+              <h2>{userName}</h2>
+            </div>
+            
+            
+            <div className='segment'>
+              <div className='mantra-title'>Mantra: </div>
               <div className='profile-mantra'>{mantra}</div>
             </div>
             {/* <div className='segment'> something else here, for balance</div> */}

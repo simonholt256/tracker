@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-top: 14px;
   
 }
 
@@ -13,14 +14,35 @@
   background-color: rgba(114, 243, 232, 0.123); */
   background: linear-gradient(130deg, #a4eeee, #ddffff);
   border: solid 1px rgba(0, 0, 0, 0.24);
-  border-radius: 20px;
   padding: 40px 20px;
   width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 4px 2px 6px grey;
+  box-shadow: 5px 8px 0px rgb(144, 144, 144);
+  margin-top: 40px;
+}
+
+.tab-profile {
+  position: absolute;
+  background-color: #a4eeee;
+  height: 30px;
+  width: 74px;
+  top: -29px;
+  left: 24px;
+  border-radius: 10px 10px 0px 0px;
+  border: solid 1px rgba(0, 0, 0, 0.24);
+  border-bottom: solid 1px #a4eeee;
+}
+
+.profile-title {
+  position: absolute;
+  top: -44px;
+  right: 20px;
+  font-style: italic;
+  font-size: 1.8rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .profile-pic-box {
@@ -42,26 +64,29 @@
 
 .name-mantra {
   width: 260px;
-  margin: 10px 10px 10px 14px;
+  margin: 0px 10px 0px 14px;
   position: relative;
 }
 
-.mantra-title {
-  margin-left: 20px;
-  background-color: plum;
-  border-radius: 10px 10px 0px 0px;
-}
 
-.profile-mantra {
-  font-size: 1.7rem;
-}
 
 .edit-button {
   position: absolute;
-  bottom: 8px;
-  right: 16px;
-  border-radius: 20px;
-  padding: 5px 10px;
+  bottom: 14px;
+  right: 20px;
+  border-radius: 7px;
+  padding: 8px 14px 12px 14px;
+  background-color: #e9cfff;
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 1.4rem;
+  line-height: 10px;
+  border: none;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #dfbbff;
 }
 
 .edit-profile-box {
@@ -74,9 +99,21 @@
 
 .segment {
   border: solid 1px rgba(153, 153, 153, 0.521);
+  border-top: solid 28px #ffcd9b;
   border-radius: 10px;
-  margin: 6px;
+  margin: 14px 6px;
   padding: 6px 10px 8px 10px;
   background-color: #fffff7;
   box-shadow: 4px 4px 0px rgb(0, 0, 0);
+  position: relative;
+}
+
+.mantra-title {
+  position: absolute;
+  top: -30px;
+  left: 14px;
+}
+
+.profile-mantra {
+  font-size: 1.7rem;
 }

@@ -120,6 +120,10 @@
   
 }
 
+.star-button:hover {
+  background-color: rgb(233, 233, 233);
+}
+
 .star-button:active {
   transform-origin: 80px 60px;
   transform: scale(1.03);
