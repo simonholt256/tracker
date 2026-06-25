@@ -58,10 +58,6 @@ Navigate to the backend folder:
 ```
 cd backend
 ```
-Navigate to the fastapi folder:
-```
-cd fastapi
-```
 Create a virtual environment:
 ```
 python -m venv venv
