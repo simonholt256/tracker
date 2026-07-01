@@ -21,8 +21,6 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 app.include_router(users.router)
-app.include_router(posts.router)
-app.include_router(likes.router)
 app.include_router(intentions.router)
 app.include_router(stars.router)
 app.include_router(challenges.router)
