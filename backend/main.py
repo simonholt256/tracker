@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database.database import Base, engine
-from routers import users, posts, likes, intentions, stars, challenges
+from routers import users, intentions, stars, challenges
 from routers.auth.auth import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 
