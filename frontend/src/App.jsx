@@ -20,8 +20,7 @@ import './cssStyles/App.css'
 function App() {
 
   return (
-    
-      
+     
     <div className='back-panel'>
       <div className='whole'>
         

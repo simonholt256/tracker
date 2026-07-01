@@ -86,10 +86,6 @@ Open a new terminal and navigate to frontend:
 ```
 cd frontend
 ```
-navigate to spring:
-```
-cd spring
-```
 Install dependencies:
 ```
 npm install
