@@ -294,8 +294,45 @@
   margin: 20px 40px;
   padding: 10px 30px;
   width: 90%;
-  height: 300px;
+  min-height: 300px;
 }
 
+@media (max-width: 600px) {
+  .mountain-pic {
+    width: 100%;
+    height: 100%;
+  }
 
+  .login-info-card-box {
+    
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .info-card {
+    padding: 4px;
+    height: 40px;
+    text-align: center;
+  }
+
+  /* LOGGED IN HOME */
+
+  .home-box-top {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-home {
+    flex-direction: column;
+  }
+
+  .info-card-box {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .copy-card {
+    
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 

@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../components/header/Header';
-import Navbar from '../components/header/Navbar';
-import UserWelcomeBar from '../components/header/UserWelcomeBar';
-
 import WinsCalendar from '../components/wins/WinsCalendar';
 
 import Calendar from 'react-calendar';
@@ -234,9 +230,6 @@ function Progress () {
 
   return (
     <>
-      <Header/>
-      <Navbar/>
-      <UserWelcomeBar currentUserName={userName}/>
       <div className='progress-page'>
         <h1 className='progress-title'>--- Progress ---</h1>
         <div className='progress-file-border'>

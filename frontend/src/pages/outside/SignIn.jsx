@@ -1,49 +1,33 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../components/header/Header';
-import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
+import Squig from '../../assets/squig.png';
+import Spring from '../../assets/spring.png';
+import SpringTest from '../../assets/springtest2.png';
 
-import Squig from '../assets/squig.png'
-import Spring from '../assets/spring.png'
-import SpringTest from '../assets/springtest2.png'
-
-import '../cssStyles/SignInUp.css'
+import '../../cssStyles/SignInUp.css';
 
 function SignIn() {
+  const { signIn } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
-
-  const navigate = useNavigate(); // used to redirect
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        'http://127.0.0.1:8000/auth/login',
-        { email, password }
-      );
+    const result = await signIn(email, password);
 
-      const token = response.data.access_token;
-      localStorage.setItem('jwtToken', token); // save JWT
-
-      setMessage("Login successful!");
-      navigate('/'); // redirect to dashboard
-
-    } catch (error) {
-      console.error(error);
-      setMessage("Login failed. Check your email and password.");
+    if (!result.success) {
+      setMessage(result.error);
     }
   };
 
   return (
     <>
-      <Header/>
-      <LoggedOutWelcome/>
+    
       <div className='anchor'>
         {/* <img className='squig' src={Squig}></img> */}
         {/* <img className='spring' src={SpringTest} ></img> */}

@@ -3,9 +3,6 @@ import axios from 'axios';
 
 import Header from "../components/header/Header";
 
-import UserWelcomeBar from '../components/header/UserWelcomeBar';
-import Navbar from '../components/header/Navbar';
-
 import ProfileHome from "../components/home/ProfileHome"
 import AchievementDisplay from "../components/home/AchievementDisplay"
 import MyIntentionsHome from '../components/home/MyIntentionsHome';
@@ -73,9 +70,7 @@ function Home() {
 
   return (
     <>
-      <Header/>
-      <Navbar/>
-      <UserWelcomeBar currentUserName={userName}/>
+      
       <> 
         <div className='page-box'>
           <div className="home-box">
@@ -112,6 +107,7 @@ function Home() {
           </div>
         </div> 
       </>
+      
     </>
   )
 }

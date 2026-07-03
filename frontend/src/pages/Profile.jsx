@@ -1,37 +1,25 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import CreatePost from '../components/CreatePost';
-import DisplayPosts from '../components/DisplayPosts';
+import React, { useState, useContext } from 'react';
+import { UserInfoContext } from '../context/UserInfoContext';
 
-import Header from '../components/header/Header';
-import Navbar from '../components/header/Navbar';
-import UserWelcomeBar from '../components/header/UserWelcomeBar';
+import LightBulb from '../assets/profile/lightbulbicon.png';
+import Rocket from '../assets/profile/rocketicon.png';
+import Flower from '../assets/profile/flowericon.png';
+import Compass from '../assets/profile/compassicon.png';
+import Microscope from '../assets/profile/microscopeicon.png';
+import Fist from '../assets/profile/fisticon.png';
 
-import ProfilePic from '../assets/standinprofilepic.jpg'
-
-import LightBulb from '../assets/profile/lightbulbicon.png'
-import Rocket from '../assets/profile/rocketicon.png'
-import Flower from '../assets/profile/flowericon.png'
-import Compass from '../assets/profile/compassicon.png'
-import Microscope from '../assets/profile/microscopeicon.png'
-import Fist from '../assets/profile/fisticon.png'
-
-import '../cssStyles/Profile.css'
-
-
+import '../cssStyles/Profile.css';
 
 function Profile() {
-  const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState('');
-  const [icon, setIcon] = useState('')
-  const [mantra, setMantra] = useState('')
-  const navigate = useNavigate();
+  const { user, updateUser } = useContext(UserInfoContext);
 
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState('');
-  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState(1);
   const [selectedMantra, setSelectedMantra] = useState('');
+
+  const iconIndex = user.icon_image ? Number(user.icon_image) : 0;
+  const mantraText = user.mantra || "Don’t let perfect be the enemy of good.";
 
   const icons = [
     LightBulb,
@@ -51,88 +39,55 @@ function Profile() {
     "I do it anywaaayyy."
   ];
 
-  useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
-
-    // If no token, redirect to signin
-    if (!token) {
-      navigate('/');
-      return;
-    }
-
-    // Fetch user data
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          'http://127.0.0.1:8000/users/me',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
-
-        setUserId(response.data.id);
-        setUserName(response.data.user_name);
-        setIcon(response.data.icon_image ?? 0)
-        setMantra(response.data.mantra ?? "Don’t let perfect be the enemy of good.");
-
-      } catch (error) {
-        console.log(error.response.data);
-        console.error(error);
-        navigate('/'); // If token invalid, redirect
-      }
-    };
-
-    fetchUser();
-
-  }, [navigate]);
+  if (!user) {
+    return (
+      <>
+        <Header />
+        <Navbar />
+        <div className="profile-page">
+          <h2>Loading profile...</h2>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      <Header/>
-      <Navbar/>
-      <UserWelcomeBar currentUserName={userName}/>
+
       <div className='profile-page'>
-        
-        
         <div className='profile-info-box'>
           <div className='tab-profile'></div>
           <h1 className='profile-title'>--- Profile ---</h1>
+
           <div className='profile-pic-box'>
-            <img className='profile-pic' src={icons[icon]}></img>
+            <img className='profile-pic' src={icons[iconIndex]} alt="Profile Icon" />
           </div>
-          
+
           <div className='name-mantra'>
             <div className='segment'>
-              <div className='mantra-title'>Username: </div>
-              <h2>{userName}</h2>
+              <div className='mantra-title'>Username:</div>
+              <h2>{user.user_name}</h2>
             </div>
-            
-            
+
             <div className='segment'>
-              <div className='mantra-title'>Mantra: </div>
-              <div className='profile-mantra'>{mantra}</div>
+              <div className='mantra-title'>Mantra:</div>
+              <div className='profile-mantra'>{mantraText}</div>
             </div>
-            {/* <div className='segment'> something else here, for balance</div> */}
-            
           </div>
+
           <button
             className='edit-button'
             onClick={() => {
-              setEditName(userName);
-              setSelectedIcon(icon);
-              setSelectedMantra(mantra);
+              setEditName(user.user_name);
+              setSelectedIcon(user.icon_image);
+              setSelectedMantra(user.mantra);
               setIsEditing(true);
             }}
           >
             Edit profile
           </button>
         </div>
-        {/* <div>could have stats, like total stars, longest streak, time improving etc etc etc</div> */} 
-        {/* <CreatePost onPostCreated={(newPost) => setPosts(prev => [newPost, ...prev])}/>
-        <DisplayPosts state="user"/>
-        <DisplayPosts state="all"/> */}
+
         {isEditing && (
           <div className="edit-profile-box">
             <h3>Username</h3>
@@ -179,38 +134,28 @@ function Profile() {
 
             <button
               onClick={async () => {
-                const token = localStorage.getItem('jwtToken');
+                await updateUser({
+                  user_name: editName,
+                  mantra: selectedMantra,
+                  icon_image: String(selectedIcon)
+                });
 
-                await axios.put(
-                  `http://127.0.0.1:8000/users/${userId}`,
-                  {
-                    user_name: editName,
-                    mantra: selectedMantra,
-                    icon_image: String(selectedIcon)
-                  },
-                  {
-                    headers: { Authorization: `Bearer ${token}` }
-                  }
-                );
-
-                setUserName(editName);
-                setIcon(selectedIcon);
-                setMantra(selectedMantra);
                 setIsEditing(false);
               }}
             >
               Save
             </button>
-            <button 
-            className='challenge-close-button'
-            onClick={() => setIsEditing(false)}
-            >x</button>
+
+            <button
+              className='challenge-close-button'
+              onClick={() => setIsEditing(false)}
+            >
+              x
+            </button>
           </div>
         )}
-        
       </div>
     </>
-    
   );
 }
 

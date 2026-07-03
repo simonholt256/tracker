@@ -1,13 +1,10 @@
-import InUpSwitch from "../components/InUpSwitch"
+import InUpSwitch from "../../components/home/InUpSwitch"
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-import Header from "../components/header/Header";
-import LoggedOutWelcome from "../components/header/LoggedOutWelcome";
-
-import Flowers from '../assets/growing.png'
-import Mountain from '../assets/mountainHomeScreen2.png'
+import Flowers from '../../assets/growing.png'
+import Mountain from '../../assets/mountainHomeScreen2.png'
 
 function HomeLogin () {
 
@@ -48,8 +45,6 @@ function HomeLogin () {
 
   return (
     <>
-    <Header/>
-    <LoggedOutWelcome/>
       <div>
         
         <img className='mountain-pic' src={Flowers}></img>

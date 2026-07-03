@@ -1,10 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 
-import Header from '../components/header/Header';
-import Navbar from '../components/header/Navbar';
-import UserWelcomeBar from '../components/header/UserWelcomeBar';
-
 import '../cssStyles/Wins.css'
 
 import Trophy1 from '../assets/trophies/trophy1.png'
@@ -139,9 +135,6 @@ function Wins () {
 
   return (
     <>
-      <Header/>
-      <Navbar/>
-      <UserWelcomeBar currentUserName={userName}/>
       <div className='wins-page'>
         
         <h1 className='wins-title'>--- Wins ---</h1>

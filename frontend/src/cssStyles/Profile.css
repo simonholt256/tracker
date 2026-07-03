@@ -117,3 +117,17 @@
 .profile-mantra {
   font-size: 1.7rem;
 }
+
+@media (max-width: 600px) {
+  .profile-info-box {
+    flex-direction: column;
+  }
+
+  .name-mantra {
+    width: 90%;
+  }
+
+  .edit-profile-box {
+    width: 96%;
+  }
+}

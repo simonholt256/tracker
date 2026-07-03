@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 
-import Header from '../components/header/Header';
-import LoggedOutWelcome from '../components/header/LoggedOutWelcome';
-
-import '../cssStyles/SignInUp.css'
+import '../../cssStyles/SignInUp.css';
 
 function SignUp() {
+  const { signUp } = useContext(AuthContext);
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,37 +13,25 @@ function SignUp() {
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
       return;
     }
 
-    try {
-      const response = await axios.post(
-        'http://127.0.0.1:8000/users/signup',
-        {
-          user_name: userName,
-          email: email,
-          password: password
-        }
-      );
+    const result = await signUp({ userName, email, password });
 
+    if (result.success) {
       setMessage("Signup successful!");
-      console.log(response.data);
-
-    } catch (error) {
-      console.error(error);
-      const backendMessage = error.response?.data?.detail;
-      setMessage(backendMessage || "Signup failed.");
+    } else {
+      setMessage(result.error);
     }
   };
 
   return (
     <>
-      <Header/>
-      <LoggedOutWelcome/>
+    
       <div className='sign-in-box'>
         <h1 className='sign-in-title'>Sign up to get started!</h1>
         <form onSubmit={handleSubmit}>

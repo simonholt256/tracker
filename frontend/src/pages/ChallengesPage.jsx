@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../components/header/Header';
-import Navbar from '../components/header/Navbar';
-import UserWelcomeBar from '../components/header/UserWelcomeBar';
-
 import Trophy1 from '../assets/trophies/trophy1.png'
 import Trophy2 from '../assets/trophies/trophy2.png'
 import Trophy3 from '../assets/trophies/trophy3.png'
@@ -162,9 +158,7 @@ function ChallengesPage () {
 
   return (
     <>
-      <Header/>
-      <Navbar/>
-      <UserWelcomeBar currentUserName={userName}/>
+      
       <div className='challenges-page'>
         
         <div className='first-column'>

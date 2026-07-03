@@ -1,8 +1,14 @@
 import { NavLink } from "react-router-dom"
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthContext"
 
 import StarSmall from '../../assets/Starsmall.png'
 
 function Navbar () {
+  const { user: authUser } = useContext(AuthContext);
+
+  if (!authUser) return null;
+
   return (
     <div className="nav-container">
       <NavLink to="/home" className="nav-link">

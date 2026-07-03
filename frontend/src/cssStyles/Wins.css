@@ -29,7 +29,7 @@
   padding-top: 10px;
   background-color: #fff8ee;
   margin-top: 40px;
-  min-width: 916px;
+  width: 86%;
   
 }
 
@@ -172,3 +172,12 @@
   border-right: solid 1px rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width: 600px) {
+  .wins-title {
+    position: relative;
+  }
+
+  .celebrating-man {
+    display: none;
+  }
+}
