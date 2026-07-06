@@ -7,6 +7,8 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { UserInfoProvider } from './context/UserInfoContext.jsx'
 import { IntentionsProvider } from './context/IntentionsContext.jsx'
+import { ChallengesProvider } from './context/ChallengesContext.jsx'
+import { StarsProvider } from './context/StarsContexts.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,7 +16,11 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <UserInfoProvider>
           <IntentionsProvider>
-            <App />
+            <ChallengesProvider>
+              <StarsProvider>
+                <App />
+              </StarsProvider>
+            </ChallengesProvider>
           </IntentionsProvider>
         </UserInfoProvider>
       </AuthProvider>
