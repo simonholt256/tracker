@@ -22,17 +22,17 @@ function ProfileHome ({userName, userImage, userMantra}) {
 
   return (
     <>
-      <div className="profile-home">
-        <div className='tab-small-profile'></div>
+      <div className="profilehome">
+        <div className='profilehome__tab'></div>
         
-        <div className='home-profile-pic-box'>
-          <img className='home-profile-pic' src={icons[userImage]}></img>
+        <div className='profilehome__icon-box'>
+          <img className='profilehome__icon' src={icons[userImage]}></img>
         </div>
-        <div className='name-title-box'>
-          <h2 className='name-title'>{userName}</h2>
+        <div className='profilehome__username-box'>
+          <h2 className='profilehome__username'>{userName}</h2>
         </div>
         
-        <p className='mantra'>{userMantra}</p>
+        <p className='profilehome__mantra'>{userMantra}</p>
       </div>
     </>
   )

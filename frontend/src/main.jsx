@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { UserInfoProvider } from './context/UserInfoContext.jsx'
 import { IntentionsProvider } from './context/IntentionsContext.jsx'
 import { ChallengesProvider } from './context/ChallengesContext.jsx'
-import { StarsProvider } from './context/StarsContexts.jsx'
+import { StarsProvider } from './context/StarsContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

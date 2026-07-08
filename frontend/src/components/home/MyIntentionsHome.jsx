@@ -1,130 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 
-import Stargold from '../../assets/stargold.png'
-import Starblank from '../../assets/starblank.png'
-import Halfstargold from '../../assets/halfstargold.png'
-import Halfstarblank from '../../assets/halfstarblank.png'
-import Passcolour from '../../assets/passcolour.png'
-import Passblank from '../../assets/passblank.png'
+import Stargold from '../../assets/stargold.png';
+import Starblank from '../../assets/starblank.png';
+import Halfstargold from '../../assets/halfstargold.png';
+import Halfstarblank from '../../assets/halfstarblank.png';
+import Passcolour from '../../assets/passcolour.png';
+import Passblank from '../../assets/passblank.png';
 
-import '../../cssStyles/HomeIntentions.css'
+import '../../cssStyles/HomeIntentions.css';
 
-function MyIntentionsHome () {
-  const [intentions, setIntentions] = useState([]);
-  const [stars, setStars] = useState([])
+// CONTEXTS
+import { IntentionsContext } from '../../context/IntentionsContext';
+import { StarsContext } from '../../context/StarsContext';
 
+function MyIntentionsHome() {
+
+  // CONTEXT DATA
+  const { intentions } = useContext(IntentionsContext);
+  const { stars, createStar, deleteStar } = useContext(StarsContext);
+
+  // LOCAL STATE
   const [currentCarouselIndex, setCarouselCurrentIndex] = useState(0);
-  
-  const token = localStorage.getItem('jwtToken');
 
-  useEffect(() => {
-    if (!token) return;
-
-    const fetchIntentions = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/intentions/', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setIntentions(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const fetchStars = async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/stars/",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
-
-        setStars(response.data);
-
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchIntentions();
-    fetchStars();
-  }, [token]);
-
-  const createStar = async (habitID, date, checkLevel) => {
-
-
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/stars/",
-        {
-          habit_id: habitID,
-          date_checked: date,
-          check_level: checkLevel
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
-
-      setStars(prev => [response.data, ...prev]);
-
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  
-
-  const handleDeleteStar = async (starId) => {
-
-    if (!token) return;
-
-    try {
-      await axios.delete(`http://127.0.0.1:8000/stars/${starId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      // Remove the deleted star from state
-      setStars(prev => prev.filter(s => s.id !== starId));
-
-    } catch (error) {
-      console.error("Error deleting star:", error.response?.data || error.message);
-    }
-  };
-
+  // Handle star click (same logic, but using context functions)
   const handleStarClick = async (level, existingStar, itemId, today) => {
     if (existingStar) {
       if (existingStar.check_level === level) {
-        await handleDeleteStar(existingStar.id);
+        await deleteStar(existingStar.id);
       } else {
-        await handleDeleteStar(existingStar.id);
-        await createStar(itemId, today, level);
+        await deleteStar(existingStar.id);
+        await createStar({
+          habit_id: itemId,
+          date_checked: today,
+          check_level: level
+        });
       }
     } else {
-      await createStar(itemId, today, level);
+      await createStar({
+        habit_id: itemId,
+        date_checked: today,
+        check_level: level
+      });
     }
   };
 
   return (
-    
     <div className="card home-intentions">
-      
       <div className='carousel-box'>
 
-        <button className='carousel-button prev'
-            onClick={() =>
-              setCarouselCurrentIndex(prev => (prev === 0 ? intentions.length - 1 : prev - 1))
-            }
-          >&#8678;</button>
-          
+        {/* PREV BUTTON */}
+        <button
+          className='carousel-button prev'
+          onClick={() =>
+            setCarouselCurrentIndex(prev =>
+              prev === 0 ? intentions.length - 1 : prev - 1
+            )
+          }
+        >
+          &#8678;
+        </button>
+
+        {/* CAROUSEL */}
         <div className='carousel'>
-          {intentions.length === 0 && <p>No intentions yet, add something above</p>}
+          {intentions.length === 0 && (
+            <p>No intentions yet, add something above</p>
+          )}
+
           <ul
             className="slide-ul"
             style={{
@@ -135,97 +76,97 @@ function MyIntentionsHome () {
             {intentions.map((item) => {
               const today = new Date().toISOString().split('T')[0];
 
-              const existingStar = stars.find(star => 
-                star.habit_id === item.id &&
-                star.date_checked === today
+              const existingStar = stars.find(
+                star =>
+                  star.habit_id === item.id &&
+                  star.date_checked === today
               );
-
-              const hasStarToday = !!existingStar;
 
               return (
                 <li className="slide" key={item.id}>
                   <div className='home-intentions-split'>
                     <div className='intention-group'>
-                      
                       <div className='intention-in-slide'>
-                      {item.intention} {item.to_quit ? "(Quit)" : ""}
+                        {item.intention} {item.to_quit ? "(Quit)" : ""}
                       </div>
-                      <div className='intention-info' >
+
+                      <div className='intention-info'>
                         <div>Started: {item.created_at.split('T')[0]}</div>
-                        <div>Stars: {stars.filter(star => star.habit_id === item.id).length}</div>
-                      </div> 
+                        <div>
+                          Stars: {stars.filter(star => star.habit_id === item.id).length}
+                        </div>
+                      </div>
                     </div>
+
+                    {/* STAR BUTTONS */}
                     <div className='select-icon-box'>
                       <div className='done-it-box'>
-                        {/* <div>{hasStarToday ? "Remove" : "Add a"} Star</div> */}
-                        <button className='star-button'
-                        
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleStarClick(1, existingStar, item.id, today);
-                        }}
-
+                        <button
+                          className='star-button'
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleStarClick(1, existingStar, item.id, today);
+                          }}
                         >
-                          {existingStar?.check_level == 1 ? (
-                            <img className='star-pic' src={Stargold} ></img>
+                          {existingStar?.check_level === 1 ? (
+                            <img className='star-pic' src={Stargold} />
                           ) : (
-                            <img className='star-pic' src={Starblank} ></img>
-                          ) }
-                          
+                            <img className='star-pic' src={Starblank} />
+                          )}
                         </button>
-                        
-                        {/* <div>for today!</div> */}
                       </div>
+
                       <div className='half-pass-box'>
-                        <button 
+                        <button
+                          className='half-star-button'
                           onClick={(e) => {
                             e.stopPropagation();
                             handleStarClick(2, existingStar, item.id, today);
                           }}
-                          className='half-star-button'
                         >
-
-                          {existingStar?.check_level == 2 ? (
-                            <img className='half-star-pic' src={Halfstargold}></img>
+                          {existingStar?.check_level === 2 ? (
+                            <img className='half-star-pic' src={Halfstargold} />
                           ) : (
-                            <img className='half-star-pic' src={Halfstarblank}></img>
+                            <img className='half-star-pic' src={Halfstarblank} />
                           )}
-                        
                         </button>
-                        
-                        <button 
+
+                        <button
+                          className='pass-button'
                           onClick={(e) => {
                             e.stopPropagation();
                             handleStarClick(3, existingStar, item.id, today);
                           }}
-                          className='pass-button'>
-                          {existingStar?.check_level == 3 ? (
-                            <img className='pass-pic' src={Passcolour}></img>
+                        >
+                          {existingStar?.check_level === 3 ? (
+                            <img className='pass-pic' src={Passcolour} />
                           ) : (
-                            <img className='pass-pic' src={Passblank}></img>
-                          ) }
+                            <img className='pass-pic' src={Passblank} />
+                          )}
                         </button>
                       </div>
                     </div>
-                    
                   </div>
-                  
                 </li>
-              )
+              );
             })}
           </ul>
-          
-          
         </div>
-        <button className='carousel-button next'
+
+        {/* NEXT BUTTON */}
+        <button
+          className='carousel-button next'
           onClick={() =>
-            setCarouselCurrentIndex(prev => (prev === intentions.length - 1 ? 0 : prev + 1))
+            setCarouselCurrentIndex(prev =>
+              prev === intentions.length - 1 ? 0 : prev + 1
+            )
           }
-        >&#8680;</button>  
-      </div>  
+        >
+          &#8680;
+        </button>
+      </div>
     </div>
-    
-  )
+  );
 }
 
-export default MyIntentionsHome
+export default MyIntentionsHome;
