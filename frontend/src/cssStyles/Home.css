@@ -30,7 +30,7 @@
   }
 }
 
-/* profilehome */
+/* profile home */
 
 .profilehome {
   display: flex;
@@ -100,7 +100,117 @@
   border: solid 1px #0000003f;
 }
 
-/**/
+@media (max-width: 600px) {
+  .profilehome {
+    flex-direction: row;
+  }
+
+  .profilehome__icon-box {
+    width: 120px;
+    height: 100px;
+    border-top: solid 14px #e1cbff;
+    margin: 10px 20px 10px 10px;
+  }
+
+  .profilehome__icon {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Achievement Display */
+
+.achievementdisplay {
+  background: linear-gradient(130deg, #ffd7a9, #ffedc4);
+  border: solid 1px rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  padding-top: 6px;
+  margin: 30px 20px;
+  border-radius: 0px;
+  box-shadow: 5px 8px 0px rgb(144, 144, 144);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.achievementdisplay__tabs {
+  position: absolute;
+  background-color: rgb(255, 215, 169);
+  height: 20px;
+  width: 54px;
+  top: -19px;
+  left: 20px;
+  border-radius: 10px 10px 0px 0px;
+  border: solid 1px rgba(0, 0, 0, 0.24);
+  border-bottom: solid 1px rgb(255, 215, 169);
+}
+
+.achievementdisplay:hover {
+  scale: 1.01;
+  background-color: rgba(255, 215, 169, 0.9);
+  box-shadow: 5px 8px 10px rgb(111, 109, 230);
+}
+
+.achievementdisplay__cabinet {
+  background-color: #deb887;
+  border-bottom: solid 30px #fcd5a2;
+  border-left: solid 10px #ad9069;
+  border-right: solid 10px #b69a76;
+  border-top: solid 6px #74624a;
+  width: 100%;
+  height: 120px;
+}
+
+.achievementdisplay__trophy {
+  height: 100px;
+  margin: 6px 0px;
+  cursor: pointer;
+}
+
+.achievementdisplay__trophy:hover {
+  transform: scale(1.1);
+}
+
+.achievementdisplay__title {
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  line-height: 0.9;
+}
+
+.achievementdisplay__trophy-info {
+  height: 64px;
+  padding: 4px 10px;
+  margin: 16px 0px 4px 0px;
+  background-color: #fffff7;
+  border: solid 1px #0000003f;
+}
+
+.achievementdisplay__stats {
+  padding: 4px 10px;
+  margin: 6px 0px 4px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #fffff7;
+  border: solid 1px #0000003f;
+}
+
+/* home intentions */
+
+/* extra info */
+
+.extrainfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 600px) {
+  .extrainfo {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*  */
 
 .sign-in-up-bar {
   text-align: center;
@@ -125,10 +235,9 @@
   border-radius: 40px;
 }
 
-.info-card-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
+
+
+
 
 .login-info-card-box {
   width: 100%;
@@ -143,42 +252,6 @@
   background-color: #A6BFFF;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
   height: 80px;
-  
-}
-
-
-
-
-.home-wins-box {
-  background: linear-gradient(130deg, #ffd7a9, #ffedc4);
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  padding: 20px;
-  padding-top: 6px;
-  margin: 30px 20px;
-  border-radius: 0px;
-  box-shadow: 5px 8px 0px rgb(144, 144, 144);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.tab-small-wins {
-  position: absolute;
-  background-color: rgb(255, 215, 169);
-  height: 20px;
-  width: 54px;
-  top: -19px;
-  left: 20px;
-  border-radius: 10px 10px 0px 0px;
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  border-bottom: solid 1px rgb(255, 215, 169);
-}
-
-.home-wins-box:hover {
-  scale: 1.01;
-  background-color: rgba(255, 215, 169, 0.9);
-  box-shadow: 5px 8px 10px rgb(111, 109, 230);
 }
 
 .mountain-pic {
@@ -195,48 +268,8 @@
   height: 120px;
 }
 
-.cabinet-trophy-home {
-  height: 100px;
-  margin: 6px 0px;
-  cursor: pointer;
-}
-
-.cabinet-trophy-home:hover {
-  transform: scale(1.1);
-}
-
-.awards-title {
-  margin-bottom: 5px;
-  font-size: 1.6rem;
-  line-height: 0.9;
-}
-
 .other-button {
   width: 60px;
-}
-
-.yellow {
-  background-color: rgb(255, 255, 161);
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  box-shadow: 5px 8px 0px rgb(144, 144, 144);
-}
-
-.turquoise {
-  background-color: rgb(125, 255, 216);
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  box-shadow: 5px 8px 0px rgb(144, 144, 144);
-}
-
-.magenta {
-  background-color: rgb(238, 168, 255);
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  box-shadow: 5px 8px 0px rgb(144, 144, 144);
-}
-
-.blue {
-  background-color: rgb(141, 247, 255);
-  border: solid 1px rgba(0, 0, 0, 0.24);
-  box-shadow: 5px 8px 0px rgb(144, 144, 144);
 }
 
 .yellow:hover, .turquoise:hover, .magenta:hover, .blue:hover {
@@ -269,14 +302,6 @@
     padding: 4px;
     height: 40px;
     text-align: center;
-  }
-
-  .profilehome {
-    flex-direction: column;
-  }
-
-  .info-card-box {
-    grid-template-columns: 1fr 1fr;
   }
 
   .copy-card {

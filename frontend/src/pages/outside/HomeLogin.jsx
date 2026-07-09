@@ -53,10 +53,10 @@ function HomeLogin () {
       </div>
       
       <div className="login-info-card-box">
-        <div className="info-card turquoise"><a href="#">Method</a></div>
-        <div className="info-card blue"><a href="#">Whos it for?</a></div>
-        <div className="info-card yellow"><a href="#">Ethos</a></div>
-        <div className="info-card magenta"><a href="#">More about us</a></div>
+        <div className="info-link turquoise-box"><a href="#">Method</a></div>
+        <div className="info-link blue-box"><a href="#">Whos it for?</a></div>
+        <div className="info-link yellow-box"><a href="#">Ethos</a></div>
+        <div className="info-link magenta-box"><a href="#">More about us</a></div>
       </div>
       <div className="">WHAT IT'S ALL ABOUT</div>
       <div className="method-card copy-card">

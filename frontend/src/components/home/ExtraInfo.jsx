@@ -2,11 +2,11 @@ import '../../cssStyles/Home.css'
 
 function ExtraInfo () {
   return (
-    <div className="info-card-box">
-      <div className="info-card yellow"><a href="#">strategies</a></div>
-      <div className="info-card turquoise"><a href="#">ethos</a></div>
-      <div className="info-card magenta"><a href="#">I messed up, what now?</a></div>
-      <div className="info-card blue"><a href="#">more about us</a></div>
+    <div className="extrainfo">
+      <div className="info-link yellow-box"><a href="#method-home">strategies</a></div>
+      <div className="info-link turquoise-box"><a href="#">ethos</a></div>
+      <div className="info-link magenta-box"><a href="#">I messed up, what now?</a></div>
+      <div className="info-link blue-box"><a href="#">more about us</a></div>
     </div>
   )
 }

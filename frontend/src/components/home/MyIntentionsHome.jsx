@@ -84,8 +84,20 @@ function MyIntentionsHome() {
 
               return (
                 <li className="slide" key={item.id}>
+                  <div className='intention-group for-mobile'>
+                      <div className='intention-in-slide'>
+                        {item.intention} {item.to_quit ? "(Quit)" : ""}
+                      </div>
+
+                      <div className='intention-info'>
+                        <div>Started: {item.created_at.split('T')[0]}</div>
+                        <div>
+                          Stars: {stars.filter(star => star.habit_id === item.id).length}
+                        </div>
+                      </div>
+                    </div>
                   <div className='home-intentions-split'>
-                    <div className='intention-group'>
+                    <div className='intention-group not-for-mobile'>
                       <div className='intention-in-slide'>
                         {item.intention} {item.to_quit ? "(Quit)" : ""}
                       </div>

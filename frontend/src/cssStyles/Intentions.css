@@ -368,3 +368,68 @@ ul {
   left: 50%;
   transform: translate(-50%, -50%)
 }
+
+.mission-switch {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mobile-add-intention {
+  margin: auto;
+  cursor: pointer;
+}
+
+.add-challenge-mobile {
+  margin: auto;
+  cursor: pointer;
+}
+
+.for-mobile {
+  display: none;
+}
+
+
+
+@media (max-width: 600px) {
+
+  .intention-page-split {
+    grid-template-columns: 1fr;
+  }
+
+  .intentions-right-column {
+    display: none;
+  }
+
+  .for-mobile {
+    display: flex;
+  }
+
+  .add-box {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .first-column {
+    display: none;
+  }
+
+  .add-challenge-button {
+    display: none;
+  }
+
+  .challenges-page {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .set-intentions {
+    width: 90%;
+    margin: 20px auto;
+
+  }
+
+  .challenge-list-title {
+    margin: 10px 20px;
+  }
+
+}

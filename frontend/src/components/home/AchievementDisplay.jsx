@@ -38,15 +38,15 @@ function AchievementDisplay() {
 
   return (
     <>
-      <div className="card home-wins-box">
-        <div className='tab-small-wins'></div>
+      <div className="achievementdisplay">
+        <div className='achievementdisplay__tabs'></div>
 
-        <div className='awards-title'>Awards</div>
+        <div className='achievementdisplay__title'>Awards</div>
 
-        <div className='home-cabinet'>
+        <div className='achievementdisplay__cabinet'>
           {completedChallenges.map((item) => (
             <img
-              className='cabinet-trophy-home'
+              className='achievementdisplay__trophy'
               src={trophyMap[item.trophy_id]}
               key={item.id}
               onClick={() => setSelectedTrophy(item)}
@@ -54,7 +54,7 @@ function AchievementDisplay() {
           ))}
         </div>
 
-        <div className='trophy-info'>
+        <div className='achievementdisplay__trophy-info'>
           {!selectedTrophy ? (
             <div>Select a trophy</div>
           ) : (
@@ -83,7 +83,7 @@ function AchievementDisplay() {
           )}
         </div>
 
-        <div className='stats'>
+        <div className='achievementdisplay__stats'>
           <div>
             <div>Live intentions: {intentions.length}</div>
             <div>Total stars: {stars.length}</div>

@@ -205,7 +205,7 @@ function Wins () {
 
                 return (
                   <li className='li-intention-stars' key={intention.id}>
-                    <div className='stars-total-colums'>
+                    <div className='stars-total-columns'>
                       <div>
                         {intention.intention}: {intentionStarCount}
                         

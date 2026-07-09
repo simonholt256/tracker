@@ -11,14 +11,15 @@ import IntentionsPage from "./pages/IntentionsPage";
 import Profile from "./pages/Profile";
 import Wins from "./pages/Wins";
 
-import Header from "./components/header/Header";
-import WelcomeBar from "./components/header/WelcomeBar";
-import Navbar from "./components/header/Navbar";
-import MobileNav from "./components/header/MobileNav";
+import Header from "./components/constants/Header";
+import WelcomeBar from "./components/constants/WelcomeBar";
+import Navbar from "./components/constants/Navbar";
+import MobileNav from "./components/constants/MobileNav";
 
 
 
 import './cssStyles/App.css'
+import './cssStyles/Constants.css'
 
 
 

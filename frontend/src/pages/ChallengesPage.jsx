@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 import { ChallengesContext } from '../context/ChallengesContext';
 import { IntentionsContext } from '../context/IntentionsContext';
@@ -86,6 +86,20 @@ function ChallengesPage() {
   return (
     <>
       <div className='challenges-page'>
+        <div className='mission-switch for-mobile'>
+          <NavLink to="/intentions" className="missions-link">
+            Intentions
+          </NavLink>
+          <NavLink to="/challenges" className="missions-link">
+            Challenges
+          </NavLink>
+        </div>
+        <div
+            className='add-challenge-mobile for-mobile'
+            onClick={() => setAddChallengeVisible(prev => !prev)}
+          >
+            Add a challenge
+          </div>
         <div className='first-column'>
           <img className='rosette' src={Rosette} alt="rosette" />
         </div>

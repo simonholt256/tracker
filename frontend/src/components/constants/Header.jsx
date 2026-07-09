@@ -12,7 +12,8 @@ function Header() {
             <div className="green-div"></div>
           </div>
           <div className="main-title">
-            <img className='spring' src={Springnew}/>
+            {/* <img className='spring' src={Springnew}/> */}
+            <div className='flying-tortoise'>Flying Tortoise</div>
             {/* <h1 className="main-title-text" >Spring</h1> */}
           </div>
           <div className="green-div-box green-two">

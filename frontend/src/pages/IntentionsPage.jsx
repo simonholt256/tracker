@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 import Mountains from '../assets/mountains.png';
 import Pencil from '../assets/pencil.png';
@@ -77,10 +77,28 @@ function IntentionsPage() {
     setAddIntentionsVisible(false);
   };
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div className='intention-page-split'>
-
+        <div className='mission-switch for-mobile'>
+          <NavLink to="/intentions" className="missions-link">
+            Intentions
+          </NavLink>
+          <NavLink to="/challenges" className="missions-link">
+            Challenges
+          </NavLink>
+        </div>
+        <div className='mobile-add-intention for-mobile' onClick={() => setAddIntentionsVisible(prev => !prev)}>Add an Intention</div>
         <div className='set-intentions'>
           <div className='set-intentions-tab'></div>
           <h3>Intentions:</h3>
@@ -92,17 +110,53 @@ function IntentionsPage() {
 
           <ul className='intentions-ul'>
             {intentions.map((item) => (
-              <li
-                key={item.id}
-                onClick={() => setSelectedIntention(item)}
-                className={`set-intention 
-                  ${item.to_quit ? "quit-intention" : ""} 
-                  ${selectedIntention?.id === item.id ? 'selected-intent' : ''}`}
-              >
-                {item.intention} {item.to_quit ? "(Quit)" : ""}
-              </li>
+              <React.Fragment key={item.id}>
+                <li
+                  onClick={() => setSelectedIntention(item)}
+                  className={`set-intention 
+                    ${item.to_quit ? "quit-intention" : ""} 
+                    ${selectedIntention?.id === item.id ? 'selected-intent' : ''}`}
+                >
+                  {item.intention} {item.to_quit ? "(Quit)" : ""}
+                </li>
+
+                {/* MOBILE DETAILS BOX — appears directly under the clicked item */}
+                {isMobile && selectedIntention?.id === item.id && (
+                  <div className="mobile-intention-details">
+                    {/* <div>Intention:</div>
+                    <div className="intention-info-display">
+                      {item.intention}
+                    </div> */}
+
+                    <div>Note:</div>
+                    <div className="intention-info-display">
+                      {item.note || "No note available"}
+                    </div>
+
+                    <div>Start date:</div>
+                    <div className="intention-info-display">
+                      {item.created_at?.split("T")[0]}
+                    </div>
+
+                    <div>Active challenges: 2</div>
+                    <div>Completed challenges: 0</div>
+                    <div>Total stars: 50</div>
+
+                    <div className="edit-intentions-buttons">
+                      <button className="edit-intentions-button" onClick={handleEdit}>
+                        Edit
+                      </button>
+                      <button className="edit-intentions-button">Retire</button>
+                      <button className="edit-intentions-button" onClick={handleDelete}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </ul>
+
         </div>
 
         <div className='intentions-right-column'>

@@ -30,9 +30,10 @@ function ProfileHome ({userName, userImage, userMantra}) {
         </div>
         <div className='profilehome__username-box'>
           <h2 className='profilehome__username'>{userName}</h2>
+          <p className='profilehome__mantra'>{userMantra}</p>
         </div>
         
-        <p className='profilehome__mantra'>{userMantra}</p>
+        
       </div>
     </>
   )

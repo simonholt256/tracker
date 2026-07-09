@@ -151,7 +151,7 @@
   height: 30px;
 }
 
-.stars-total-colums {
+.stars-total-columns {
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
@@ -179,5 +179,21 @@
 
   .celebrating-man {
     display: none;
+  }
+
+  .file-border {
+    width: 100%;
+  }
+
+  .completed-box {
+    width: 92%;
+  }
+
+  .stars-total {
+    width: 96%;
+  }
+
+  .stars-total-columns {
+    grid-template-columns: 1fr;
   }
 }
