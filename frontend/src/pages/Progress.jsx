@@ -12,6 +12,13 @@ import { StarsContext } from '../context/StarsContext';
 import { ChallengesContext } from '../context/ChallengesContext';
 import { IntentionsContext } from '../context/IntentionsContext';
 
+// IMAGES
+
+import StarGold from '../assets/stargold.png'
+import HalfStar from '../assets/halfstargold.png'
+import Pass from '../assets/passcolour.png'
+import None from '../assets/starblank.png'
+
 function Progress() {
   const navigate = useNavigate();
 
@@ -328,28 +335,28 @@ function Progress() {
                 onClick={() => setAddCheckLevel(1)}
                 className={`select-intention ${addCheckLevel === 1 ? "active-icon" : ""}`}
               >
-                STAR
+                <img src={StarGold} className='star-select'/>
               </button>
 
               <button
                 onClick={() => setAddCheckLevel(2)} 
                 className={`select-intention ${addCheckLevel === 2 ? "active-icon" : ""}`}
               >
-                HALF STAR
+                <img src={HalfStar} className='halfstar-select'/>
               </button>
 
               <button
                 onClick={() => setAddCheckLevel(3)} 
                 className={`select-intention ${addCheckLevel === 3 ? "active-icon" : ""}`}
               >
-                PASS
+                <img src={Pass} className='pass-select'/>
               </button>
 
               <button
                 onClick={() => setAddCheckLevel(4)}
                 className={`select-intention ${addCheckLevel === 4 ? "active-icon" : ""}`}
               >
-                NONE
+                <img src={None} className='none-select'/>
               </button>
             </div>
 
@@ -364,18 +371,18 @@ function Progress() {
 
                 <div className='selected-image'>
                   {addCheckLevel === 1
-                    ? "star"
+                    ? <img src={StarGold} className='star-select-display'/>
                     : addCheckLevel === 2
-                    ? "half star"
+                    ? <img src={HalfStar} className='halfstar-select-display'/>
                     : addCheckLevel === 3
-                    ? "pass"
+                    ? <img src={Pass} className='pass-select-display'/>
                     : addCheckLevel === 4
-                    ? "None"
+                    ? <img src={None} className='none-select-display'/>
                     : "new star"}
                 </div>
 
                 <div>
-                  {addCheckLevel}
+                  {/* {addCheckLevel} */}
                   {modalStar?.check_level}
                   {modalStar?.date_checked}
                   {addBoxDate.toDateString()}

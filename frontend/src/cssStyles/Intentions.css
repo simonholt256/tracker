@@ -377,11 +377,31 @@ ul {
 .mobile-add-intention {
   margin: auto;
   cursor: pointer;
+  border: solid 2px rgb(252, 180, 132);
+  background-color: #ffeac4;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 10px 40px;
+}
+
+.mobile-add-intention:hover {
+  background-color: #ffdea2;
+  transform: scale(1.05);
 }
 
 .add-challenge-mobile {
   margin: auto;
   cursor: pointer;
+  border: solid 2px rgb(252, 180, 132);
+  background-color: #ffeac4;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 10px 40px;
+}
+
+.add-challenge-mobile:hover {
+  background-color: #ffdea2;
+  transform: scale(1.05);
 }
 
 .for-mobile {

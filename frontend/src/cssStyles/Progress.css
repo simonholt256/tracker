@@ -253,6 +253,40 @@
   flex-direction: row;
 }
 
+.star-select {
+  width: 60px;
+}
+
+.halfstar-select {
+  width: 30px;
+  margin-left: 30px;
+}
+
+.pass-select {
+  width: 40px;
+}
+
+.none-select {
+  width: 60px;
+}
+
+.star-select-display {
+  height: 100px;
+}
+
+.halfstar-select-display {
+  height: 100px;
+  margin-left: 50px;
+}
+
+.pass-select-display {
+  height: 100px;
+}
+
+.none-select-display {
+  height: 100px;
+}
+
 .add-box-selection {
   display: flex;
   flex-direction: column;
@@ -262,6 +296,7 @@
   height: 70px;
   width: 70px;
   margin: 4px;
+  padding: 0px;
 }
 
 .add-box-chosen {
@@ -274,15 +309,20 @@
 }
 
 .selected-image {
-  background-color: #ffbc70;
+  background-color: #ffecd6;
+  border: solid 2px rgb(255, 222, 160);
   height: 140px;
   width: 140px;
   margin: 10px;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .active-icon {
-  background-color: rgb(150, 150, 236);
+  background-color: rgb(192, 230, 255);
+  border: solid 2px rgb(150, 179, 223);
 }
 
 .progress-add-button {

@@ -15,7 +15,7 @@ function WelcomeBar() {
   // Not logged in
   if (!authUser) {
     return (
-      <div className="welcome-bar">
+      <div className="welcome-bar logged-out-bar">
         <p>Welcome, you are not signed in</p>
 
         <div className="welcome-bar-interact">

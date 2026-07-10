@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 
 export const ChallengesContext = createContext();
 
@@ -9,6 +12,9 @@ export function ChallengesProvider({ children, starsChanged }) {
   const [errorChallenges, setErrorChallenges] = useState(null);
 
   const token = localStorage.getItem("jwtToken");
+
+  const { user } = useContext(AuthContext);
+
 
   // -----------------------------
   // Fetch all challenges
@@ -31,6 +37,15 @@ export function ChallengesProvider({ children, starsChanged }) {
       setLoadingChallenges(false);
     }
   }, [token]);
+
+  /* refresh on user sign in */
+
+  useEffect(() => {
+    if (user) {
+      fetchChallenges();
+    }
+  }, [user, fetchChallenges]);
+
 
   // -----------------------------
   // Refresh when stars change
