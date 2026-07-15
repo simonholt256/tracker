@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 import Mountains from '../assets/mountains.png';
 import Pencil from '../assets/pencil.png';
-import Addintention from '../assets/addintention.png';
+import AddIntention from '../assets/addintention.png';
 
 import '../cssStyles/Intentions.css';
 
@@ -165,7 +165,7 @@ function IntentionsPage() {
               <img
                 onClick={() => setAddIntentionsVisible(prev => !prev)}
                 className='add-intention-img'
-                src={Addintention}
+                src={AddIntention}
               />
             </div>
           </div>
