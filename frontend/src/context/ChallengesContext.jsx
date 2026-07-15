@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
+const API = import.meta.env.VITE_API_URL;
 
 export const ChallengesContext = createContext();
 
@@ -25,7 +26,7 @@ export function ChallengesProvider({ children, starsChanged }) {
     try {
       setLoadingChallenges(true);
 
-      const res = await axios.get("http://127.0.0.1:8000/challenges/", {
+      const res = await axios.get(`${API}/challenges/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -69,7 +70,7 @@ export function ChallengesProvider({ children, starsChanged }) {
   const createChallenge = async (challengeData) => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/challenges/",
+        `${API}/challenges/`,
         challengeData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -87,7 +88,7 @@ export function ChallengesProvider({ children, starsChanged }) {
   const updateChallenge = async (challengeId, updates) => {
     try {
       const res = await axios.put(
-        `http://127.0.0.1:8000/challenges/${challengeId}`,
+        `${API}/challenges/${challengeId}`,
         updates,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -108,7 +109,7 @@ export function ChallengesProvider({ children, starsChanged }) {
   const deleteChallenge = async (challengeId) => {
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/challenges/${challengeId}`,
+        `${API}/challenges/${challengeId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

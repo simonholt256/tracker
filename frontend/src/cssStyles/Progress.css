@@ -331,3 +331,39 @@
   width: 140px;
   border-radius: 40px;
 }
+
+@media (max-width: 600px) {
+  .progress-block {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .list-box-div {
+    height: 200px;
+  }
+
+  .progress-file-border {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .calendar-display-box {
+    margin: 0px;
+    margin-top: 8px;
+  }
+
+  .intention-list-box {
+    margin: 0px;
+    margin-top: 16px;
+  }
+
+  .your-intention {
+    margin: auto;
+    font-size: 1.6rem;
+  }
+
+  .intentions-upper-box {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+  }
+}

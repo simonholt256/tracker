@@ -19,6 +19,8 @@ import HalfStar from '../assets/halfstargold.png'
 import Pass from '../assets/passcolour.png'
 import None from '../assets/starblank.png'
 
+const API = import.meta.env.VITE_API_URL;
+
 function Progress() {
   const navigate = useNavigate();
 
@@ -56,7 +58,7 @@ function Progress() {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/users/me', {
+        const response = await fetch(`${API}/users/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await response.json();
@@ -165,30 +167,33 @@ function Progress() {
           <div className='progress-block'>
             {/* LEFT SIDE — INTENTIONS */}
             <div className='intention-list-box'>
-              <h3 className='your-intention'>Your Intentions:</h3>
+              <div className='intentions-upper-box'>
+                <h3 className='your-intention'>Your Intentions:</h3>
 
-              <div className='all-do-box'>
-                <button
-                  className={`all ${filter === "all" ? "active" : ""}`}
-                  onClick={() => setFilter("all")}
-                >
-                  All
-                </button>
+                <div className='all-do-box'>
+                  <button
+                    className={`all ${filter === "all" ? "active" : ""}`}
+                    onClick={() => setFilter("all")}
+                  >
+                    All
+                  </button>
 
-                <button
-                  className={`do ${filter === "do" ? "active" : ""}`}
-                  onClick={() => setFilter("do")}
-                >
-                  Do!
-                </button>
+                  <button
+                    className={`do ${filter === "do" ? "active" : ""}`}
+                    onClick={() => setFilter("do")}
+                  >
+                    Do!
+                  </button>
 
-                <button
-                  className={`dont ${filter === "dont" ? "active" : ""}`}
-                  onClick={() => setFilter("dont")}
-                >
-                  Don't do!
-                </button>
+                  <button
+                    className={`dont ${filter === "dont" ? "active" : ""}`}
+                    onClick={() => setFilter("dont")}
+                  >
+                    Don't do!
+                  </button>
+                </div>
               </div>
+              
 
               {intentions.length === 0 && <p>No intentions yet.</p>}
 

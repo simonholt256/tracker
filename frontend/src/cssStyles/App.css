@@ -344,8 +344,11 @@ p, div {
   .header-banner {
     padding: 0px;
     margin-top: 4px;
+    grid-template-columns: 0.2fr 0.6fr 1fr;
   }
+  
   .flying-tortoise {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    margin-bottom: 4px;
   }
 }

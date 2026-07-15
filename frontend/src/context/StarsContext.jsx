@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_API_URL;
+
 export const StarsContext = createContext();
 
 export function StarsProvider({ children }) {
@@ -22,7 +24,7 @@ export function StarsProvider({ children }) {
     try {
       setLoadingStars(true);
 
-      const res = await axios.get("http://127.0.0.1:8000/stars/", {
+      const res = await axios.get(`${API}/stars/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -46,7 +48,7 @@ export function StarsProvider({ children }) {
   const createStar = async (starData) => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/stars/",
+        `${API}/stars/`,
         starData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -68,7 +70,7 @@ export function StarsProvider({ children }) {
   const updateStar = async (starId, updates) => {
     try {
       const res = await axios.put(
-        `http://127.0.0.1:8000/stars/${starId}`,
+        `${API}/stars/${starId}`,
         updates,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -92,7 +94,7 @@ export function StarsProvider({ children }) {
   const deleteStar = async (starId) => {
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/stars/${starId}`,
+        `${API}/stars/${starId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

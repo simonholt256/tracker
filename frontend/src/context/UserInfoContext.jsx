@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 
+const API = import.meta.env.VITE_API_URL;
+
 export const UserInfoContext = createContext();
 
 export function UserInfoProvider({ children }) {
@@ -16,7 +18,7 @@ export function UserInfoProvider({ children }) {
       const token = localStorage.getItem("jwtToken");
       if (!token) return;
 
-      const res = await axios.get("http://127.0.0.1:8000/users/me", {
+      const res = await axios.get(`${API}/users/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -36,7 +38,7 @@ export function UserInfoProvider({ children }) {
       if (!token || !user?.id) return;
 
       const res = await axios.put(
-        `http://127.0.0.1:8000/users/${user.id}`,
+        `${API}/users/${user.id}`,
         updates,
         {
           headers: { Authorization: `Bearer ${token}` }

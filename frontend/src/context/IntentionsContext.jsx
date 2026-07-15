@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 
+const API = import.meta.env.VITE_API_URL;
+
 export const IntentionsContext = createContext();
 
 export function IntentionsProvider({ children }) {
@@ -21,7 +23,7 @@ export function IntentionsProvider({ children }) {
     }
 
     try {
-      const res = await axios.get("http://127.0.0.1:8000/intentions", {
+      const res = await axios.get(`${API}/intentions`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -38,7 +40,7 @@ export function IntentionsProvider({ children }) {
   const createIntention = async (newIntention) => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/intentions",
+        `${API}/intentions`,
         newIntention,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -54,7 +56,7 @@ export function IntentionsProvider({ children }) {
   const updateIntention = async (id, updates) => {
     try {
       const res = await axios.put(
-        `http://127.0.0.1:8000/intentions/${id}`,
+        `${API}/intentions/${id}`,
         updates,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -72,7 +74,7 @@ export function IntentionsProvider({ children }) {
   // Delete intention
   const deleteIntention = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/intentions/${id}`, {
+      await axios.delete(`${API}/intentions/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

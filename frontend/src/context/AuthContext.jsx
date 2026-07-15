@@ -2,6 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL;
+
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -13,7 +15,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      axios.get("http://127.0.0.1:8000/users/me", {
+      axios.get(`${API}/users/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => setUser(res.data))
@@ -26,7 +28,7 @@ export function AuthProvider({ children }) {
   const signUp = async ({ userName, email, password }) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/users/signup",
+        `${API}/users/signup`,
         {
           user_name: userName,
           email,
@@ -45,7 +47,7 @@ export function AuthProvider({ children }) {
   const signIn = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/login",
+        `${API}/auth/login`,
         { email, password }
       );
 
@@ -53,7 +55,7 @@ export function AuthProvider({ children }) {
       localStorage.setItem("jwtToken", token);
 
       // Fetch user profile
-      const userRes = await axios.get("http://127.0.0.1:8000/users/me", {
+      const userRes = await axios.get(`${API}/users/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
