@@ -74,13 +74,12 @@
   align-items: center;
 }
 
-.add-intention-img {
-  position: absolute;
-  height: 140px;
-  top: 6px;
+.add-intention {
+  height: 50px;
   cursor: pointer;
-  z-index: 1;
-  right: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-intention-img:hover {

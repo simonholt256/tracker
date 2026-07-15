@@ -3,7 +3,6 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 import Mountains from '../assets/mountains.png';
 import Pencil from '../assets/pencil.png';
-import AddIntention from '../assets/addintention.png';
 
 import '../cssStyles/Intentions.css';
 
@@ -162,11 +161,12 @@ function IntentionsPage() {
         <div className='intentions-right-column'>
           <div className='intentions-right-column__button-and-pic'>
             <div className='intentions-right-column__button-box'>
-              <img
+              <div
                 onClick={() => setAddIntentionsVisible(prev => !prev)}
-                className='add-intention-img'
-                src={AddIntention}
-              />
+                className='add-intention'>
+                Add Intention
+              </div>
+              
             </div>
           </div>
 
