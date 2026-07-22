@@ -6,6 +6,8 @@ import axios from "axios";
 import Flowers from '../../assets/growing.png'
 import Mountain from '../../assets/mountainHomeScreen2.png'
 
+const API = import.meta.env.VITE_API_URL;
+
 function HomeLogin () {
 
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function HomeLogin () {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8000/users/me',
+          `${API}/users/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 // import 'react-calendar/dist/Calendar.css';
 
+const API = import.meta.env.VITE_API_URL;
+
 function WinsCalendar() {
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function WinsCalendar() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8000/users/me',
+          `${API}/users/me`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setUserName(response.data.user_name);
@@ -34,7 +36,7 @@ function WinsCalendar() {
     const fetchStars = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8000/stars/',
+          `${API}/stars/`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setStars(response.data);

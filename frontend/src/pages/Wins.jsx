@@ -16,6 +16,8 @@ import Celebrating from '../assets/celebrating.png'
 
 import { useNavigate } from 'react-router-dom';
 
+const API = import.meta.env.VITE_API_URL;
+
 
 function Wins () {
 
@@ -49,7 +51,7 @@ function Wins () {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8000/users/me',
+          `${API}/users/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -74,7 +76,7 @@ function Wins () {
 
     const fetchIntentions = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/intentions/', {
+        const response = await axios.get(`${API}/intentions/`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIntentions(response.data);
@@ -87,7 +89,7 @@ function Wins () {
     const fetchCompletedChallenges = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/challenges/",
+          `${API}/challenges/`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -107,7 +109,7 @@ function Wins () {
      const fetchStars = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/stars/",
+          `${API}/stars/`,
           {
             headers: {
               Authorization: `Bearer ${token}`
