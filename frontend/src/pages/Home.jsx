@@ -12,6 +12,7 @@ import '../cssStyles/Home.css';
 function Home() {
   const { user, loading } = useContext(AuthContext);
 
+
   if (loading) {
     return <div>Loading...</div>;
   }

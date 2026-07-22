@@ -40,6 +40,10 @@ function Wins () {
   const token = localStorage.getItem('jwtToken');
 
   useEffect(() => {
+    console.log("API =", import.meta.env.VITE_API_URL);
+  }, []);
+
+  useEffect(() => {
 
     // If no token, redirect to signin
     if (!token) {
