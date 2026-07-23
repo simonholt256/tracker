@@ -23,7 +23,7 @@ export function IntentionsProvider({ children }) {
     }
 
     try {
-      const res = await axios.get(`${API}/intentions`, {
+      const res = await axios.get(`${API}/intentions/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -40,7 +40,7 @@ export function IntentionsProvider({ children }) {
   const createIntention = async (newIntention) => {
     try {
       const res = await axios.post(
-        `${API}/intentions`,
+        `${API}/intentions/`,
         newIntention,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -56,7 +56,7 @@ export function IntentionsProvider({ children }) {
   const updateIntention = async (id, updates) => {
     try {
       const res = await axios.put(
-        `${API}/intentions/${id}`,
+        `${API}/intentions/${id}/`,
         updates,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -74,7 +74,7 @@ export function IntentionsProvider({ children }) {
   // Delete intention
   const deleteIntention = async (id) => {
     try {
-      await axios.delete(`${API}/intentions/${id}`, {
+      await axios.delete(`${API}/intentions/${id}/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
